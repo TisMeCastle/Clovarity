@@ -1,10 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const staffRole = "749870362988380170"
-const parentCat = "907166518184398868"
-const logChannelId = "753529277114482688"
-const socialLink = "https://solo.to/frostesports"
-const color = "#00FF00"
+const staffRole = "1046600167056478239"
+const parentCat = "915101674878697493"
+const logChannelId = "1046549143667101866"
+const socialLink = "https://solo.to/clovarity"
+const color = "#00ff43"
 // const permission = str(1 << 5);
 
 module.exports = {

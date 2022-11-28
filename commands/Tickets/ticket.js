@@ -1,11 +1,11 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 const { MessageActionRow, MessageButton } = require("discord.js");
-const staffRole = "1021610445741760584"
-const parentCat = "907166518184398868"
-const logChannelId = "753529277114482688"
-const socialLink = "https://solo.to/frostesports"
-const color = "#00FF00"
+const staffRole = "1046600167056478239"
+const parentCat = "915101674878697493"
+const logChannelId = "1046549143667101866"
+const socialLink = "https://solo.to/clovarity"
+const color = "#00ff43"
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -41,11 +41,11 @@ module.exports = {
 					deny: ['VIEW_CHANNEL'],
 				},
 				{
-					id: interaction.guild.roles.cache.get("704210755662118993"),
+					id: interaction.guild.roles.cache.get("915101634701459456"),
 					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'MANAGE_MESSAGES'],
 				},
 				{
-					id: interaction.guild.roles.cache.get("767205639134117898"),
+					id: interaction.guild.roles.cache.get("1046600167056478239"),
 					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'MANAGE_MESSAGES'],
 				}
 			],
