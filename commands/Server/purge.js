@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("purge")
-		.setDescription("Frosts official Twitch page!")
+		.setDescription("Purges a Custom Amount of Messages!")
 		.addStringOption(option =>
 			option
 				.setName('number')

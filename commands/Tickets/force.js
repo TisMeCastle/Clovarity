@@ -5,7 +5,6 @@ const parentCat = "915101674878697493"
 const logChannelId = "1046549143667101866"
 const socialLink = "https://solo.to/clovarity"
 const color = "#00ff43"
-// const permission = str(1 << 5);
 
 module.exports = {
 	data: new SlashCommandBuilder()

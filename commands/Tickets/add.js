@@ -4,7 +4,6 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("add")
 		.setDescription("Adds a user to the ticket!")
-		//.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
 		.addMentionableOption(option =>
 			option
 				.setName('user')

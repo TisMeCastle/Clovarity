@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("twitch")
-		.setDescription("Clovaritys official Twitch page!"),
+		.setDescription("Clovaritys Official Twitch Page!"),
         execute(interaction) {
             interaction.reply({
 				content: `**Twitch:** https://www.twitch.tv/clovarityesports`,
