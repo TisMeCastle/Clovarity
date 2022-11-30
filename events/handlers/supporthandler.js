@@ -29,6 +29,7 @@ module.exports.handler = async (interaction) => {
         let a = new TextInputComponent()
             .setCustomId('anythingElse')
             .setLabel("Anything else?")
+            .setRequired(true)
             .setStyle('PARAGRAPH');
 
         const firstActionRow = new MessageActionRow().addComponents(x);
