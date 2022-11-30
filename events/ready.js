@@ -9,7 +9,7 @@ module.exports = {
 		console.log("Clovarity Is Online!!!");
 
 		const activities = [
-			"Clovarity-Support!!!",
+			"Support-and-Forms!!!",
 			"solo.to/clovarity",
 			"Stay Lucky!"
 		];
