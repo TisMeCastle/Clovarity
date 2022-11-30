@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 const { MessageActionRow, MessageButton } = require("discord.js");
-const staffRole = "1046600167056478239"
+const supportRole = "1046600167056478239"
+const staffRole = "915101634701459456"
 const parentCat = "915101674878697493"
 const logChannelId = "1046549143667101866"
 const socialLink = "https://solo.to/clovarity"
@@ -41,18 +42,18 @@ module.exports = {
 					deny: ['VIEW_CHANNEL'],
 				},
 				{
-					id: interaction.guild.roles.cache.get("915101634701459456"),
+					id: interaction.guild.roles.cache.get(staffRole),
 					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'MANAGE_MESSAGES'],
 				},
 				{
-					id: interaction.guild.roles.cache.get("1046600167056478239"),
+					id: interaction.guild.roles.cache.get(supportRole),
 					allow: ['SEND_MESSAGES', 'VIEW_CHANNEL', 'MANAGE_MESSAGES'],
 				}
 			],
 			type: 'text',
 			parent: parentCat,
 		}).then(async channel => {
-			channel.send(`https://media.discordapp.net/attachments/903500450911895562/961409509539057704/suppor_ticket.png?width=1440&height=127`)
+			channel.send(`https://cdn.discordapp.com/attachments/915415446625325056/1047373687713701898/SupportTicket_Trans_Image.png`)
 
 			setTimeout(() => {
 				const buttonData = new MessageActionRow()
@@ -67,7 +68,7 @@ module.exports = {
 		> **__Support Request:__**
 		> ${reason}
 		> ㅤ
-		> *Please be patient, <@&${staffRole}> will be with you shortly.*`, components: [buttonData]});
+		> *Please be patient, <@&${supportRole}> will be with you shortly.*`, components: [buttonData]});
 }, 1000)
 
 interaction.reply({

@@ -4,14 +4,12 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('dropdown')
+        .setName('testdropdown')
         .setDescription('makes test dropdown'),
     async execute(interaction) {
 
-        interaction.channel.send('https://media.discordapp.net/attachments/903500450911895562/961409509539057704/suppor_ticket.png?width=1440&height=127')
+        interaction.channel.send('https://media.discordapp.net/attachments/915415446625325056/1047287704532033546/Support_Trans_Image.png')
         const messageData = {
-
-            //'content': 'Select an option for your support request',
             'components': [
                 {
                     'type': 1,
@@ -21,48 +19,30 @@ module.exports = {
                             'custom_id': 'ticket_inquiry',
                             'options':[
                                 {
-                                    'label': 'Payment Form/Issues',
-                                    'value': 'payment',
-                                    'description': 'Request Trolli payment form',
+                                    'label': 'Support and Inquiries',
+                                    'value': 'supportinquiries',
+                                    'description': 'Opens a Ticket With The Support Team',
                                     'emoji': {
-                                        'name': 'leaguetrolli',
-                                        'id': '1018926150204014622',
+                                        'name': 'Support_Ticket',
+                                        'id': '1047292926482468925',
                                     },
                                 },
                                 {
-                                    'label': 'How To Play Tournaments',
-                                    'value': 'matchinfo',
-                                    'description': 'How to sign up and compete in Frost tournaments',
+                                    'label': 'Staff Application',
+                                    'value': 'staffapplications',
+                                    'description': 'Provides Clovaritys Staff Application',
                                     'emoji': {
-                                        'name': 'Bracket',
-                                        'id': '914914267671724072',
+                                        'name': 'Discord_Staff',
+                                        'id': '1047291028517957672',
                                     },
                                 },
                                 {
-                                    'label': 'Tournament Support',
-                                    'value': 'tournnament',
-                                    'description': 'Creates a ticket with the selected tournament admins',
+                                    'label': 'Feedback Form',
+                                    'value': 'feedbackforms',
+                                    'description': 'Provides a Feedback Form',
                                     'emoji': {
-                                        'name': 'frost',
-                                        'id': '782159532754862080',
-                                    },
-                                },
-                                {
-                                    'label': 'Feedback',
-                                    'value': 'feedback',
-                                    'description': 'Submit feedback here',
-                                    'emoji': {
-                                        'name': 'frost',
-                                        'id': '782159532754862080',
-                                    },
-                                },
-                                {
-                                    'label': 'General Support',
-                                    'value': 'other',
-                                    'description': 'Creates a ticket for other inquiries',
-                                    'emoji': {
-                                        'name': 'frost',
-                                        'id': '782159532754862080',
+                                        'name': 'Clovarity',
+                                        'id': '916551590494732330',
                                     },
                                 },
                             ],
@@ -74,22 +54,6 @@ module.exports = {
                 },
             ],
         };
-        // const buttonData = new MessageActionRow()
-        // .addComponents(
-        //     new MessageButton()
-        //         .setCustomId('payment')
-        //         .setLabel('Payment Form')
-        //         .setStyle('PRIMARY'),
-        //     new MessageButton()
-        //         .setCustomId('nopmt')
-        //         .setLabel('Havent Recieved Payment')
-        //         .setStyle('PRIMARY'),
-        //     new MessageButton()
-        //         .setCustomId('other')
-        //         .setLabel('Other Support Requests')
-        //         .setStyle('PRIMARY'),
-        // );
-        // // await interaction.channel.send({content: "test", components: [buttonData]});
         await interaction.channel.send(messageData);
         await interaction.reply({content: 'Dropdown Created', ephemeral: true});
     },
