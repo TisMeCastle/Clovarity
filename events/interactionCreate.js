@@ -55,7 +55,7 @@ module.exports = {
 					.addFields( // interaction.fields.getTextInputValue('component custom id');
 						{ name: 'Reasoning:', value: interaction.fields.components[0].components[0].value },
 						{ name: 'Areas to Improve:', value: interaction.fields.components[1].components[0].value },
-						{ name: 'Areas Did We Excel:', value: interaction.fields.components[2].components[0].value },
+						{ name: 'Areas We Excelled In:', value: interaction.fields.components[2].components[0].value },
 						{ name: 'Extra Comments:', value: interaction.fields.components[3].components[0].value }
 					)
 					.setAuthor({name: `${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
