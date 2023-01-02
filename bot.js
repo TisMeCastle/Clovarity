@@ -50,13 +50,12 @@ client.login(process.env.TOKEN);
   
 	console.error = function(errMessage){
 		_error.apply(console,arguments);
-		client.channels.cache.find(channel => channel.id === '1046592094233440266').send(" <@821248918214017034> error: " + errMessage);
+		client.channels.cache.find(channel => channel.id === '1059563002875084900').send("<@821248918214017034> error: " + errMessage);
 	};
   
 	console.log = function(logMessage){
-		client.channels.cache.find(channel => channel.id === '1046592094233440266').send("log: " + logMessage);
+		client.channels.cache.find(channel => channel.id === '1059563002875084900').send("log: " + logMessage);
 		_log.apply(console,arguments);
 	};
 	
 })();
-// /<@467773655858806795>

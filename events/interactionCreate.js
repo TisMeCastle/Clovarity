@@ -49,7 +49,7 @@ module.exports = {
 			}
 
 			if(interaction.customId === 'feedback') {
-				const channel = await interaction.guild.channels.cache.find(channel => channel.id === '1047369837351030834');
+				const channel = await interaction.guild.channels.cache.find(channel => channel.id === '1059563158630584412');
 				const embed = new MessageEmbed()
 					.setTitle('__Feedback Form__')
 					.addFields( // interaction.fields.getTextInputValue('component custom id');
@@ -67,7 +67,7 @@ module.exports = {
 			}
 
 			if(interaction.customId === 'staffappthinys') {
-				const channel = await interaction.guild.channels.cache.find(channel => channel.id === '1047369731864272896');
+				const channel = await interaction.guild.channels.cache.find(channel => channel.id === '1059563144319614987');
 				const embed = new MessageEmbed()
 					.setTitle('__New Staff Application__')
 					.addFields( // interaction.fields.getTextInputValue('component custom id');

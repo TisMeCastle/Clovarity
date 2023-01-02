@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const staffRole = "1046600167056478239"
-const parentCat = "915101674878697493"
-const logChannelId = "1046549143667101866"
+const staffRole = "1059562766119206922"
+const parentCat = "1059568916407517204"
+const logChannelId = "1059568999882555412"
 const socialLink = "https://solo.to/clovarity"
 const color = "#00ff43"
 

@@ -1,10 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 const { MessageActionRow, MessageButton } = require("discord.js");
-const supportRole = "1046600167056478239"
-const staffRole = "915101634701459456"
-const parentCat = "915101674878697493"
-const logChannelId = "1046549143667101866"
+const supportRole = "1059573473032282283"
+const staffRole = "1059562766119206922"
+const parentCat = "1059568916407517204"
+const logChannelId = "1059568999882555412"
 const socialLink = "https://solo.to/clovarity"
 const color = "#00ff43"
 
@@ -28,7 +28,7 @@ module.exports = {
 
 
 		if(interaction.guild.channels.cache.find(channel => channel.name === `ticket-${interaction.user.tag.split("#").join("-")}`)) {
-			return interaction.reply('you already have a ticket, please close your exsisting ticket first before opening a new one!');
+			return interaction.reply('you already have a ticket, please close your existing ticket first before opening a new one!');
 		}
 
 		interaction.guild.channels.create(`ticket-${interaction.user.tag.split("#").join("-")}`, {

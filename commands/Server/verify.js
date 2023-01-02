@@ -5,8 +5,8 @@ module.exports = {
 		.setName("verify")
 		.setDescription("Verifies the user"),
         async execute(interaction) {
-            interaction.member.roles.add("915101645396934667")
-            interaction.member.roles.remove("915101646420328478")
+            interaction.member.roles.add("1059564023865155688")
+            interaction.member.roles.remove("1059563959037984929")
             interaction.reply({
 				content: `Welcome to Clovarity!`,
 				ephemeral: true

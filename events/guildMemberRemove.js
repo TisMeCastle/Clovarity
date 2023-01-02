@@ -1,5 +1,5 @@
-const MCount = "915101667777712188"
-const bye = "1046647274966634506"
+const MCount = "1016393060512448512"
+const bye = "1059563032025505852"
 
 module.exports = {
 	name: "guildMemberRemove",

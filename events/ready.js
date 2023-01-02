@@ -42,7 +42,7 @@ module.exports = {
 					});
 				} else {
 					await rest.put(
-						Routes.applicationGuildCommands(CLIENT_ID, "840834053082054676"),
+						Routes.applicationGuildCommands(CLIENT_ID, "904839013947559946"),
 						{
 							body: commands,
 						}

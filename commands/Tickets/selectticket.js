@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const supportRole = "1046600167056478239"
-const staffRole = "915101634701459456"
-const parentCat = "915101674878697493"
-const logChannelId = "1046549143667101866"
+const supportRole = "1059573473032282283"
+const staffRole = "1059562766119206922"
+const parentCat = "1059568916407517204"
+const logChannelId = "1059568999882555412"
 const socialLink = "https://solo.to/clovarity"
 const color = "#00ff43"
 
@@ -11,7 +11,6 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("ticketselect")
 		.setDescription("Creates a channel with the support team!"),
-		// .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 	async execute(interaction) {
 
         let option = interaction.fields.components[0].components[0].value;
