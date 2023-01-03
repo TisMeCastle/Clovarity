@@ -1,7 +1,7 @@
 const sourcebin = require('sourcebin_js');
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const logChannelId = "1046549143667101866"
+const logChannelId = "1059568999882555412"
 
 module.exports = {
 	data: new SlashCommandBuilder()

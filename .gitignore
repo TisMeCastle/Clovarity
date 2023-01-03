@@ -1,3 +1,4 @@
 node_modules/
 commands/Testing_Events/sendEmbed.js
 commands/Testing_Events/sendMessage.js
+commands/Server/echo.js
