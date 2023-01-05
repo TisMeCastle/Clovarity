@@ -71,11 +71,11 @@ module.exports = {
 				const embed = new MessageEmbed()
 					.setTitle('__New Staff Application__')
 					.addFields( // interaction.fields.getTextInputValue('component custom id');
-						{ name: 'Birthday:', value: interaction.fields.components[0].components[0].value },
+						{ name: 'Birthday (Day/Month/Year):', value: interaction.fields.components[0].components[0].value },
 						{ name: 'Desired Position:', value: interaction.fields.components[1].components[0].value },
 						{ name: 'Experience:', value: interaction.fields.components[2].components[0].value },
 						{ name: 'Timezone:', value: interaction.fields.components[3].components[0].value },
-						{ name: 'Why Clovarity?', value: interaction.fields.components[4].components[0].value }
+						{ name: 'Their Top Strength:', value: interaction.fields.components[4].components[0].value }
 					)
 					.setAuthor({name: `${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
 					.setTimestamp()

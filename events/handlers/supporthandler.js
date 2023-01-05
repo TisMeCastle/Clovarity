@@ -72,7 +72,7 @@ module.exports.handler = async (interaction) => {
 
         let f = new TextInputComponent()
             .setCustomId('anythingElse')
-            .setLabel("Why Clovarity?")
+            .setLabel("What Would You Consider Your Greatest Strength To Be?")
             .setRequired(true)
             .setMinLength(50)
             .setStyle('PARAGRAPH');
