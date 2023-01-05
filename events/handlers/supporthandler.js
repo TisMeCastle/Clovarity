@@ -72,7 +72,7 @@ module.exports.handler = async (interaction) => {
 
         let f = new TextInputComponent()
             .setCustomId('anythingElse')
-            .setLabel("What Would You Consider Your Greatest Strength To Be?")
+            .setLabel("What\'s Your Greatest Strength?")
             .setRequired(true)
             .setMinLength(50)
             .setStyle('PARAGRAPH');
