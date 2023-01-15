@@ -1,6 +1,2 @@
 node_modules/
-commands/Testing_Events/leaveTest.js
-commands/Testing_Events/welcomeTest.js
-commands/Testing_Events/sendEmbed.js
-commands/Testing_Events/sendMessage.js
-commands/Server/echo.js
+commands/Testing_Events
