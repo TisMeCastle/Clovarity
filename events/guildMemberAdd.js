@@ -48,6 +48,7 @@ module.exports = {
 					.setLabel('Poll Pings')
 					.setStyle('PRIMARY')
 			)
-		member.send({ content: "**Select Your Roles!!! Once You've <#1059568873931800637>, Visit <#1059569218451931146> For A Wider Selection!!!**\n*Click The Button Again To Remove Roles*", components: [buttonData]});
+		member.send({ content: "**Select Your Roles!!! Once You've <#1059568873931800637>, Visit <#1059569218451931146> For A Wider Selection!!!**\n*Click The Button Again To Remove Roles*", components: [buttonData]})
+		.catch(() => member.guild.channels.cache.get('1059563002875084900').send(`<@${member.id}> \`${member.id}\` \`${member.user.tag}\` has their DM's disabled!`))
 	}
 }
