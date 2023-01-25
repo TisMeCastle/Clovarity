@@ -8,7 +8,7 @@ module.exports = {
         .setDescription('makes test dropdown'),
     async execute(interaction) {
 
-        interaction.channel.send('https://media.discordapp.net/attachments/915415446625325056/1047287704532033546/Support_Trans_Image.png')
+        interaction.channel.send('https://media.discordapp.net/attachments/936495048223244390/1067945954734510222/Support_Trans_Image.png?width=1440&height=127')
         const messageData = {
             'components': [
                 {

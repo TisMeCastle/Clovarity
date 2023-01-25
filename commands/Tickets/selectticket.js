@@ -47,7 +47,7 @@ module.exports = {
 			type: 'text',
 			parent: parentCat,
 		}).then(async channel => {
-			channel.send(`https://cdn.discordapp.com/attachments/915415446625325056/1047387118810431498/SupportTicket_Trans_Image.png`)
+			channel.send(`https://media.discordapp.net/attachments/936495048223244390/1067946074087641138/SupportTicket_Trans_Image.png?width=1440&height=127`)
 
 			setTimeout(() => {
 				const buttonData = new MessageActionRow()
