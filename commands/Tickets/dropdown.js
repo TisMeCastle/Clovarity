@@ -23,8 +23,8 @@ module.exports = {
                                     'value': 'supportinquiries',
                                     'description': 'Opens a Ticket With The Support Team',
                                     'emoji': {
-                                        'name': 'Support_Ticket',
-                                        'id': '1047292926482468925',
+                                        'name': 'support_ticket',
+                                        'id': '1068361702913097738',
                                     },
                                 },
                                 {
@@ -32,8 +32,8 @@ module.exports = {
                                     'value': 'staffapplications',
                                     'description': 'Provides Clovaritys Staff Application',
                                     'emoji': {
-                                        'name': 'Discord_Staff',
-                                        'id': '1047291028517957672',
+                                        'name': 'staff',
+                                        'id': '755091544893030541',
                                     },
                                 },
                                 {
@@ -42,7 +42,7 @@ module.exports = {
                                     'description': 'Provides a Feedback Form',
                                     'emoji': {
                                         'name': 'Clovarity',
-                                        'id': '916551590494732330',
+                                        'id': '1068360441593606235',
                                     },
                                 },
                             ],
