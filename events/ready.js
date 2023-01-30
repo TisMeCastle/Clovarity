@@ -10,7 +10,7 @@ module.exports = {
 
 		const activities = [
 			"Support-and-Forms!!!",
-			"solo.to/clovarity",
+			"clovarity.gg",
 			"Stay Lucky!"
 		];
 
