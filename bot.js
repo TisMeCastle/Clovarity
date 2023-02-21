@@ -58,4 +58,4 @@ client.login(process.env.TOKEN);
 		_log.apply(console,arguments);
 	};
 	
-})();
+});
