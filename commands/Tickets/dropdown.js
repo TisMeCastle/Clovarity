@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('testdropdown')
+        .setName('1testdropdown')
         .setDescription('makes test dropdown'),
     async execute(interaction) {
 
@@ -19,9 +19,27 @@ module.exports = {
                             'custom_id': 'ticket_inquiry',
                             'options':[
                                 {
-                                    'label': 'Support and Inquiries',
+                                    'label': 'Payment Form & Issues',
+                                    'value': 'payments',
+                                    'description': 'Provides the payment form and support options',
+                                    'emoji': {
+                                        'name': 'moneybags',
+                                        'id': '1024123163535224945',
+                                    },
+                                },
+                                {
+                                    'label': 'How To Play In Our Tournaments',
+                                    'value': 'matchinfo',
+                                    'description': 'Gives you all the FaQ resources',
+                                    'emoji': {
+                                        'name': 'Bracket',
+                                        'id': '914914267671724072',
+                                    },
+                                },
+                                {
+                                    'label': 'General Inquiries',
                                     'value': 'supportinquiries',
-                                    'description': 'Opens a Ticket With The Support Team',
+                                    'description': 'Opens a Ticket',
                                     'emoji': {
                                         'name': 'support_ticket',
                                         'id': '1068361702913097738',

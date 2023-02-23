@@ -99,5 +99,19 @@ module.exports.handler = async (interaction) => {
         const firstActionRow = new MessageActionRow().addComponents(reasonInput);
         modal2.addComponents(firstActionRow);
         await interaction.showModal(modal2);
-    }
+    } else if (option === "payments") {
+        interaction.reply({ content: 'Have **__EACH__** player fill out https://forms.gle/AtaNc2AaRbm6xWpZA\nExpect prizing within 14 business days.\n\n__**If you haven\'t received payment yet, try the following:**__\n 1) Check for any emails from Trolli\n 2) Ensure it has been 14 business days since submitting the form\n 3) Email \`mbrennan@logitech.com\` stating your problem and providing the tournament link, date and time', ephemeral: true })
+    } else if (option === "matchinfo") {
+        const embed = new MessageEmbed()
+            .setTitle(`Tournament Website Resources`)
+            .setColor('#00ff43')
+            .setDescription(`
+                    • **If you have questions regarding how to play matches on __start.gg__:**
+                    ㅤ- How to play matches --> [start.gg/playmatches](https://help.start.gg/en/articles/1465698-how-to-play-online-tournaments-on-start-gg)
+                
+                    • **If you have questions regarding __Challonge__, read the following links:**
+                    ㅤ- How to join tournaments --> [challonge.com/playtourney](https://kb.challonge.com/en/article/how-to-join-a-tournament-1vofud0/)
+                    ㅤ- Invite your teammates --> [challonge.com/invitem8s](https://kb.challonge.com/en/article/how-to-invite-team-members-d9pe22/)`)
+        interaction.reply({ embeds: [embed], ephemeral: true });
+    } 
 }
