@@ -8,6 +8,7 @@ module.exports = {
 	execute(client, commands) {
 		console.log("Clovarity Is Online!!!");
 
+
 		const activities = [
 			"Support-and-Forms!!!",
 			"clovarity.gg",

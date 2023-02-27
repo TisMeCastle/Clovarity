@@ -3,8 +3,8 @@ const { convertFile } = require('convert-svg-to-png');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName("gameday")
-		.setDescription("Creates a gameday graphic using an SVG")
+		.setName("victory")
+		.setDescription("We won!!")
 		.addStringOption((option) =>
 			option
 				.setName("opposition_logo_url")
