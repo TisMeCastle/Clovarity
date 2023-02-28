@@ -2,14 +2,14 @@ require("dotenv").config();
 const fs = require("fs");
 const commandFolders = fs.readdirSync('./commands');
 
-const { Client, Intents, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const client = new Client({
-	intents: [
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_MESSAGES,
-		Intents.FLAGS.GUILD_MEMBERS
-	]
-});;
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.GuildMembers
+  ],
+});
 
 const commands = [];
 client.commands = new Collection();

@@ -12,7 +12,7 @@ module.exports = {
                 .setDescription('Which Tournament Are You Posting For?')
                 .setRequired(true)
                 .addChoices(
-                    { name: 'Regular', value: 'reg' },
+                    { name: 'Clover Clash', value: 'cloverclash' },
                     { name: 'Women\'s', value: 'women' },
                     { name: 'CC\'s', value: 'cc' },
                 )
@@ -20,7 +20,7 @@ module.exports = {
         .addStringOption(option =>
             option
                 .setName("tourney_number")
-                .setDescription('What Number Of Tourney? Ex: Blizzard "70"')
+                .setDescription('What Number Of Tourney? Ex: Clover Clash "7"')
                 .setRequired(true)
 
         )
@@ -32,10 +32,10 @@ module.exports = {
         ),
     async execute(interaction) {
 
-        const gameChannelId = "754069678569160715"
+        const gameChannelId = "1059562626499231795"
         const gameChannel = interaction.guild.channels.cache.find(channel => channel.id === gameChannelId)
 
-        const formatchannelid = "1024074240393236600"
+        const formatchannelid = "1059563002875084900"
         const formatchannel = interaction.guild.channels.cache.find(channel => channel.id === formatchannelid)
 
         const buttonData = new MessageActionRow()
@@ -109,7 +109,7 @@ module.exports = {
 
                 interaction.crosspost())
 
-            formatchannel.send(`<@${interaction.user.id}> <@&996976351561121843>`)
+            formatchannel.send(`<@${interaction.user.id}>`)
             formatchannel.send(`\`\`\`
 > **Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]**
 > 
