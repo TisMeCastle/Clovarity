@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageActionRow, MessageButton } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ComponentType } = require("discord.js");
 const moment = require('moment');
 
 module.exports = {
@@ -38,12 +38,12 @@ module.exports = {
         const formatchannelid = "1059563002875084900"
         const formatchannel = interaction.guild.channels.cache.find(channel => channel.id === formatchannelid)
 
-        const buttonData = new MessageActionRow()
+        const buttonData = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId('sendRLAd')
                     .setLabel('Send Ad')
-                    .setStyle('SUCCESS')
+                    .setStyle(3)
                     .setDisabled(true)
             );
 
@@ -87,7 +87,7 @@ module.exports = {
 
 
         const filter = (interaction) => interaction.customId === 'sendRLAd'
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 10000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter, componentType: ComponentType.Button, time: 10000 });
 
         collector.on('collect', async i => {
             gameChannel.send({
