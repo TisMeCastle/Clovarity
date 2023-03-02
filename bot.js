@@ -2,13 +2,13 @@ require("dotenv").config();
 const fs = require("fs");
 const commandFolders = fs.readdirSync('./commands');
 
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const { Client, Intents, Collection } = require("discord.js");
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-	GatewayIntentBits.GuildMembers
-  ],
+	intents: [
+		Intents.FLAGS.GUILDS,
+		Intents.FLAGS.GUILD_MESSAGES,
+		Intents.FLAGS.GUILD_MEMBERS
+	]
 });
 
 const commands = [];
@@ -22,10 +22,10 @@ for (const folder of commandFolders) {
 			commands.push(command.data.toJSON());
 			client.commands.set(command.data.name, command);
 		}
-		catch(err) {
+		catch (err) {
 			console.log(err, file)
 		}
-    }
+	}
 }
 
 
@@ -45,18 +45,18 @@ for (const file of eventFiles) {
 
 client.login(process.env.TOKEN);
 
-(function(){
+(function () {
 	var _log = console.log;
 	var _error = console.error;
-  
-	console.error = function(errMessage){
-		_error.apply(console,arguments);
+
+	console.error = function (errMessage) {
+		_error.apply(console, arguments);
 		client.channels.cache.find(channel => channel.id === '1059563002875084900').send("<@821248918214017034> error: " + errMessage);
 	};
-  
-	console.log = function(logMessage){
+
+	console.log = function (logMessage) {
 		client.channels.cache.find(channel => channel.id === '1059563002875084900').send("log: " + logMessage);
-		_log.apply(console,arguments);
+		_log.apply(console, arguments);
 	};
-	
+
 });
