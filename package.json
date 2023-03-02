@@ -1,5 +1,5 @@
 {
-  "name": "clovarity",
+  "name": "clovarity-bot",
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
@@ -10,7 +10,7 @@
   "author": "tismecastle@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/builders": "^0.7.0",
+    "@discordjs/builders": "^1.4.0",
     "@discordjs/rest": "^0.1.0-canary.0",
     "@sendgrid/mail": "^7.7.0",
     "convert-svg-to-png": "^0.6.4",
@@ -19,9 +19,6 @@
     "dotenv": "^10.0.0",
     "moment": "^2.29.4",
     "mongoose": "^6.0.12",
-    "npm": "^9.5.1",
-    "puppeteer": "^19.7.2",
-    "smashgg.js": "^4.1.17",
     "sourcebin_js": "^0.0.3-ignore"
   },
   "devDependencies": {
