@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('1testdropdown')
+        .setName('dropdown')
         .setDescription('makes test dropdown'),
     async execute(interaction) {
 
