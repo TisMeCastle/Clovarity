@@ -12,7 +12,7 @@ module.exports = {
                 .setDescription('Which Tournament Are You Posting For?')
                 .setRequired(true)
                 .addChoices(
-                    { name: 'Clover Clash', value: 'cloverclash' },
+                    { name: 'Clover Clash', value: 'Clover Clash' },
                     { name: 'Women\'s', value: 'women' },
                     { name: 'CC\'s', value: 'cc' },
                 )
@@ -32,7 +32,7 @@ module.exports = {
         ),
     async execute(interaction) {
 
-        const gameChannelId = "1059562626499231795"
+        const gameChannelId = "1059569184880738334"
         const gameChannel = interaction.guild.channels.cache.find(channel => channel.id === gameChannelId)
 
         const formatchannelid = "1059563002875084900"
@@ -53,11 +53,11 @@ module.exports = {
 > 
 > :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
-> <:Bracket:914914267671724072> __**Format:**__
+> :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
 > 
-> <:startgg:975907682810724352> __**Signup Link:**__
-> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase()}${interaction.options.getString("tourney_number")}
+> :joystick: __**Signup Link:**__
+> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
@@ -73,11 +73,11 @@ module.exports = {
                 > 
                 > :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                 > 
-                > <:Bracket:914914267671724072> __**Format:**__
+                > :scroll: __**Format:**__
                 > CA + US | 3v3 Double Elimination
                 > 
-                > <:startgg:975907682810724352> __**Signup Link:**__
-                > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase()}${interaction.options.getString("tourney_number")}
+                > :joystick: __**Signup Link:**__
+                > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
                 > 
                 > __**Prize:**__
                 > **First Place =** \`$70\`
@@ -96,11 +96,11 @@ module.exports = {
                             > 
                             > :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                             > 
-                            > <:Bracket:914914267671724072> __**Format:**__
+                            > :scroll: __**Format:**__
                             > CA + US | 3v3 Double Elimination
                             > 
-                            > <:startgg:975907682810724352> __**Signup Link:**__
-                            > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase()}${interaction.options.getString("tourney_number")}
+                            > :joystick: __**Signup Link:**__
+                            > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
                             > 
                             > __**Prize:**__
                             > **First Place =** \`$70\`
@@ -109,17 +109,17 @@ module.exports = {
 
                 interaction.crosspost())
 
-            formatchannel.send(`<@${interaction.user.id}>`)
+            formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@891366783561375754>`)
             formatchannel.send(`\`\`\`
 > **Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]**
 > 
 > :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
-> :Bracket: __**Format:**__
+> :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
 > 
 > :startgg: __**Signup Link:**__
-> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase()}${interaction.options.getString("tourney_number")}
+> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
