@@ -28,7 +28,11 @@ module.exports = {
 
 
 			const inputFilePath = './commands/Esport/result.svg'
-			const outputFilePath = await convertFile(inputFilePath)
+			const outputFilePath = await convertFile(inputFilePath, {
+				puppeteer: {
+				  args: ['--no-sandbox', '--disable-setuid-sandbox']
+				}
+			  });
 
 			interaction.editReply({
 				files: [{
