@@ -4,10 +4,22 @@ const { convertFile } = require('convert-svg-to-png');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("defeat")
-		.setDescription("We lost :(")
+		.setDescription("Creates a defeat graphic using an SVG")
 		.addStringOption((option) =>
 			option
 				.setName("opposition_logo_url")
+				.setDescription("Send their logo so I can add it to the graphic")
+				.setRequired(true)
+		)
+		.addStringOption((option) =>
+			option
+				.setName("opposition_score")
+				.setDescription("Send their logo so I can add it to the graphic")
+				.setRequired(true)
+		)
+		.addStringOption((option) =>
+			option
+				.setName("clovarity_score")
 				.setDescription("Send their logo so I can add it to the graphic")
 				.setRequired(true)
 		),
@@ -15,20 +27,26 @@ module.exports = {
 		interaction.deferReply()
 
 		var fs = require('fs')
-		await fs.readFile("./commands/Esport/gd.svg", 'utf8', async function (err, data) {
+		await fs.readFile("./commands/Esport/def.svg", 'utf8', async function (err, data) {
 			if (err) {
 				return console.log(err);
 			}
-			const r = data.replace('https://media.discordapp.net/attachments/936495048223244390/1075573696598659193/Williams_Resolve_full_lightmode.png?width=1440&height=474', `${interaction.options.getString("opposition_logo_url")}`);
+			var r = data.replace('opplogohere', `${interaction.options.getString("opposition_logo_url")}`) 
+			var r2 = r.replace('oppscorehere', `${interaction.options.getString("opposition_score")}`) 
+			var r3 = r2.replace('clovarityscorehere', `${interaction.options.getString("clovarity_score")}`);
 
 
-			fs.writeFile('./commands/Esport/result.svg', r, function (err) {
+			fs.writeFile('./commands/Esport/defresult.svg', r3, function (err) {
 				if (err) return console.log(err);
 			});
 
 
-			const inputFilePath = './commands/Esport/result.svg'
-			const outputFilePath = await convertFile(inputFilePath)
+			const inputFilePath = './commands/Esport/defresult.svg'
+			const outputFilePath = await convertFile(inputFilePath, {
+				puppeteer: {
+				  args: ['--no-sandbox', '--disable-setuid-sandbox']
+				}
+			  });
 
 			interaction.editReply({
 				files: [{
@@ -38,8 +56,8 @@ module.exports = {
 
 			setTimeout(() => {
 				try {
-					fs.unlinkSync('./commands/Esport/result.png');
-					fs.unlinkSync('./commands/Esport/result.svg');
+					fs.unlinkSync('./commands/Esport/defresult.png');
+					fs.unlinkSync('./commands/Esport/defresult.svg');
 				} catch (err) {
 					console.error(err);
 				}
