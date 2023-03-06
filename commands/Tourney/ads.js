@@ -1,10 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { ActionRowBuilder, ButtonBuilder, ComponentType } = require("discord.js");
+const { MessageActionRow, MessageButton } = require("discord.js");
 const moment = require('moment');
 //Un-Break Pls
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ads")
+        .setName("adstest")
         .setDescription("Posts Custom Ads")
         .addStringOption(option =>
             option
@@ -38,9 +38,9 @@ module.exports = {
         const formatchannelid = "1059563002875084900"
         const formatchannel = interaction.guild.channels.cache.find(channel => channel.id === formatchannelid)
 
-        const buttonData = new ActionRowBuilder()
+        const buttonData = new MessageActionRow()
             .addComponents(
-                new ButtonBuilder()
+                new MessageButton()
                     .setCustomId('sendRLAd')
                     .setLabel('Send Ad')
                     .setStyle(3)
@@ -49,9 +49,9 @@ module.exports = {
 
         interaction.reply({
             content: `
-> **Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]**
+> **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
-> :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+> :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
@@ -69,9 +69,9 @@ module.exports = {
         setTimeout(function () {
             interaction.editReply({
                 content: `
-                > **Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]**
+                > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
                 > 
-                > :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+                > :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                 > 
                 > :scroll: __**Format:**__
                 > CA + US | 3v3 Double Elimination
@@ -87,14 +87,14 @@ module.exports = {
 
 
         const filter = (interaction) => interaction.customId === 'sendRLAd'
-        const collector = interaction.channel.createMessageComponentCollector({ filter, componentType: ComponentType.Button, time: 10000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 10000 });
 
         collector.on('collect', async i => {
             gameChannel.send({
                 content: `
-                            > **Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]**
+                            > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
-                            > :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+                            > :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                             > 
                             > :scroll: __**Format:**__
                             > CA + US | 3v3 Double Elimination
@@ -111,14 +111,14 @@ module.exports = {
 
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@891366783561375754>`)
             formatchannel.send(`\`\`\`
-> **Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]**
+> **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
-> :date: **Date:** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+> :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 18:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
 > 
-> :startgg: __**Signup Link:**__
+> :joystick: __**Signup Link:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
 > 
 > __**Prize:**__
