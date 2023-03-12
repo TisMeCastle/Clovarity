@@ -62,7 +62,7 @@ module.exports = {
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
-> **Second Place =** \`$30\``, ephemeral: true, components: [buttonData]
+> **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData]
         })
 
         buttonData.components[0].setDisabled(false);
@@ -83,7 +83,7 @@ module.exports = {
                 > 
                 > __**Prize:**__
                 > **First Place =** \`$70\`
-                > **Second Place =** \`$30\``, ephemeral: true, components: [buttonData]
+                > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData]
             });
         }, 4000);
 
@@ -107,7 +107,7 @@ module.exports = {
                             > 
                             > __**Prize:**__
                             > **First Place =** \`$70\`
-                            > **Second Place =** \`$30\``
+                            > **Second Place =** \`$30\`\n<@&1059582067597385770>`
             }).then(interaction =>
 
                 interaction.crosspost())
