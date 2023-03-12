@@ -51,7 +51,8 @@ module.exports = {
             content: `
 > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
-> :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+> :date: **__Date & Time:__**
+> ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
@@ -71,7 +72,8 @@ module.exports = {
                 content: `
                 > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
                 > 
-                > :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+                > :date: **__Date & Time:__**
+                > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                 > 
                 > :scroll: __**Format:**__
                 > CA + US | 3v3 Double Elimination
@@ -94,7 +96,8 @@ module.exports = {
                 content: `
                             > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
-                            > :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+                            > :date: **__Date & Time:__**
+                            > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                             > 
                             > :scroll: __**Format:**__
                             > CA + US | 3v3 Double Elimination
@@ -113,7 +116,8 @@ module.exports = {
             formatchannel.send(`\`\`\`
 > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
-> :date: **__Date:__** ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+> :date: **__Date & Time:__**
+> ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
