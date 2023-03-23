@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageActionRow, MessageButton } = require("discord.js");
 const moment = require('moment');
-//Un-Break Pls
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("ads")
@@ -58,12 +58,14 @@ module.exports = {
 > CA + US | 3v3 Double Elimination
 > 
 > :joystick: __**Signup Link:**__
-> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
+> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
+> https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
 > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData]
         })
+        //https://leaguetrolli.challonge.com/cloverclash3
 
         buttonData.components[0].setDisabled(false);
 
@@ -79,17 +81,18 @@ module.exports = {
                 > CA + US | 3v3 Double Elimination
                 > 
                 > :joystick: __**Signup Link:**__
-                > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
+                > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
+                > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
                 > 
                 > __**Prize:**__
                 > **First Place =** \`$70\`
                 > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData]
             });
-        }, 4000);
+        }, 7000);
 
 
         const filter = (interaction) => interaction.customId === 'sendRLAd'
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 10000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 13000 });
 
         collector.on('collect', async i => {
             gameChannel.send({
@@ -103,7 +106,8 @@ module.exports = {
                             > CA + US | 3v3 Double Elimination
                             > 
                             > :joystick: __**Signup Link:**__
-                            > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
+                            > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
+                            > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
                             > 
                             > __**Prize:**__
                             > **First Place =** \`$70\`
@@ -123,7 +127,8 @@ module.exports = {
 > CA + US | 3v3 Double Elimination
 > 
 > :joystick: __**Signup Link:**__
-> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
+> https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
+> https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
