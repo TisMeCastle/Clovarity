@@ -57,7 +57,7 @@ module.exports = {
 > :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
 > 
-> :joystick: __**Signup Link:**__
+> :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
 > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
 > 
@@ -80,7 +80,7 @@ module.exports = {
                 > :scroll: __**Format:**__
                 > CA + US | 3v3 Double Elimination
                 > 
-                > :joystick: __**Signup Link:**__
+                > :joystick: __**Signup Links:**__
                 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
                 > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
                 > 
@@ -105,7 +105,7 @@ module.exports = {
                             > :scroll: __**Format:**__
                             > CA + US | 3v3 Double Elimination
                             > 
-                            > :joystick: __**Signup Link:**__
+                            > :joystick: __**Signup Links:**__
                             > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
                             > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
                             > 
@@ -126,7 +126,7 @@ module.exports = {
 > :scroll: __**Format:**__
 > CA + US | 3v3 Double Elimination
 > 
-> :joystick: __**Signup Link:**__
+> :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
 > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
 > 
