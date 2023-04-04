@@ -100,7 +100,7 @@ module.exports.handler = async (interaction) => {
         modal2.addComponents(firstActionRow);
         await interaction.showModal(modal2);
     } else if (option === "payments") {
-        interaction.reply({ content: 'Have **__EACH__** player fill out https://forms.gle/AtaNc2AaRbm6xWpZA\nExpect prizing within 14 business days.\n\n__**If you haven\'t received payment yet, try the following:**__\n 1) Check for any emails from Trolli\n 2) Ensure it has been 14 business days since submitting the form\n 3) Email \`mbrennan@logitech.com\` stating your problem and providing the tournament link, date and time', ephemeral: true })
+        interaction.reply({ content: 'Have **__EACH__** player fill out https://forms.gle/282kY559bziNrpL57\nExpect prizing within 14 business days.\n\n__**If you haven\'t received payment yet, try the following:**__\n 1) Check for any emails from Trolli\n 2) Ensure it has been 14 business days since submitting the form\n 3) Email \`mbrennan@logitech.com\` stating your problem and providing the tournament link, date and time', ephemeral: true })
     } else if (option === "matchinfo") {
         const embed = new MessageEmbed()
             .setTitle(`Tournament Website Resources`)
