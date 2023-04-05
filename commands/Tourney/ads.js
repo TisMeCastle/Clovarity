@@ -13,7 +13,7 @@ module.exports = {
                 .setRequired(true)
                 .addChoices(
                     { name: 'Clover Clash', value: 'Clover Clash' },
-                    { name: 'Women\'s', value: 'women' },
+                    { name: 'Luck Fest', value: 'Luck Fest' },
                     { name: 'CC\'s', value: 'cc' },
                 )
         )
@@ -47,9 +47,18 @@ module.exports = {
                     .setDisabled(true)
             );
 
+            let week = "";
+
+            if(interaction.options.getString("tourney_type") === "Luck Fest") {
+                week = "Weekly"
+            } else {
+                week = "Bi-Weekly"
+            }
+
+
         interaction.reply({
             content: `
-> **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -65,14 +74,14 @@ module.exports = {
 > **First Place =** \`$70\`
 > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData]
         })
-        //https://leaguetrolli.challonge.com/cloverclash3
+
 
         buttonData.components[0].setDisabled(false);
 
         setTimeout(function () {
             interaction.editReply({
                 content: `
-                > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+                > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
                 > 
                 > :date: **__Date & Time:__**
                 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -97,7 +106,7 @@ module.exports = {
         collector.on('collect', async i => {
             gameChannel.send({
                 content: `
-                            > **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+                            > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
                             > :date: **__Date & Time:__**
                             > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -116,9 +125,9 @@ module.exports = {
 
                 interaction.crosspost())
 
-            formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@891366783561375754>`)
+            formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
             formatchannel.send(`\`\`\`
-> **__Clovarity's Weekly ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}

@@ -31,8 +31,8 @@ module.exports = {
 			if (err) {
 				return console.log(err);
 			}
-			var r = data.replace('opplogohere', `${interaction.options.getString("opposition_logo_url")}`) 
-			var r2 = r.replace('oppscorehere', `${interaction.options.getString("opposition_score")}`) 
+			var r = data.replace('opplogohere', `${interaction.options.getString("opposition_logo_url")}`)
+			var r2 = r.replace('oppscorehere', `${interaction.options.getString("opposition_score")}`)
 			var r3 = r2.replace('clovarityscorehere', `${interaction.options.getString("clovarity_score")}`);
 
 
