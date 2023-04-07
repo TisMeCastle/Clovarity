@@ -67,7 +67,7 @@ module.exports = {
         let date = new Date(Date.now())
         let dateString = date.toString();
         dateString = dateString.split(" ");
-        dateString.splice(dateString.length - 6, 6)
+        dateString.splice(dateString.length - 7, 7)
         let dm = ["Sunday,", "Monday,", "Tuesday,", "Wednesday,", "Thursday,", "Friday,", "Saturday,"]
         dateString[0] = dm[date.getDay()]
         let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -121,7 +121,7 @@ module.exports = {
 
 
         const filter = (interaction) => interaction.customId === 'sendRLAd'
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 13000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
         collector.on('collect', async i => {
             gameChannel.send({
@@ -149,8 +149,8 @@ module.exports = {
                         name: ' ',
                         content: `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨
                 
-CA + US | 3v3 ${elim} Elimination
-Date + Time: ${dateString} 8pm EST
+CA + US | 3v3 ${elim} Elim
+${dateString} | 8pm EST
                                 
 Signup Links:⚽️
 https://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
