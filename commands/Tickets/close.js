@@ -6,7 +6,7 @@ const logChannelId = "1059568999882555412"
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("close")
-		.setDescription("Creates a channel with the support team!"),
+		.setDescription("Closes a ticket and logs it!"),
 	async execute(interaction) {
 		const options = { limit: 100 }
 

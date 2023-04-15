@@ -2,10 +2,11 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageActionRow, MessageButton } = require("discord.js");
 const sourcebin = require('sourcebin_js');
 const moment = require('moment');
+const converter = require('number-to-words');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ads")
+        .setName("ads1")
         .setDescription("Posts Custom Ads")
         .addStringOption(option =>
             option
@@ -64,16 +65,8 @@ module.exports = {
             elim = "Double"
         }
 
-        let date = new Date(Date.now())
-        let dateString = date.toString();
-        dateString = dateString.split(" ");
-        dateString.splice(dateString.length - 7, 7)
-        let dm = ["Sunday,", "Monday,", "Tuesday,", "Wednesday,", "Thursday,", "Friday,", "Saturday,"]
-        dateString[0] = dm[date.getDay()]
-        let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        dateString[1] = month[date.getMonth()]
-        dateString[2] = parseInt(dateString[2])
-        dateString = dateString.join(" ")
+        let date = Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').add(7, 'hours'))
+        date = moment(date).format('LL')
 
 
         interaction.reply({
@@ -124,6 +117,7 @@ module.exports = {
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
         collector.on('collect', async i => {
+           i.update({ content: `Check <#1059563002875084900> and <#1059569184880738334>!`, ephemeral: true, components: [] });
             gameChannel.send({
                 content: `
                             > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
@@ -144,13 +138,13 @@ module.exports = {
             }).then(interaction =>
 
                 interaction.crosspost())
-                let response = await sourcebin.create([
-                    {
-                        name: ' ',
-                        content: `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨
+            let response = await sourcebin.create([
+                {
+                    name: ' ',
+                    content: `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨
                 
-CA + US | 3v3 ${elim} Elim
-${dateString} | 8pm EST
+CA + US | 3v3 ${elim} Elimination
+${date} | 8pm EST
                                 
 Signup Links:⚽️
 https://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
@@ -159,13 +153,13 @@ https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type
 Prize:🍀
 First Place = $70
 Second Place = $30`,
-                        languageId: 'text',
-                    },
-                ], {
-                    title: `Twitter Ad for ${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")}`,
-                    description: ' ',
-                });
-            
+                    languageId: 'text',
+                },
+            ], {
+                title: `Twitter Ad for ${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")}`,
+                description: ' ',
+            });
+
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
             formatchannel.send(`\`\`\`
 > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
@@ -183,7 +177,33 @@ Second Place = $30`,
 > __**Prize:**__
 > **First Place =** \`$70\`
 > **Second Place =** \`$30\`
-\`\`\`\n**__Twitter Ad__**\n> ${response.url}`)
+\`\`\``)
+
+            let response1;
+            response1 = await sourcebin.create([
+                {
+                    name: ' ',
+                    content: `🎉${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")} Winners🎉
+
+🥇1st Place: [first_team_name]
+@
+@
+@
+                    
+🥈2nd Place: [second_team_name]
+@
+@
+@
+                    
+Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOrdinal(interaction.options.getString("tourney_number"))} ${interaction.options.getString("tourney_type")} ${week.toLowerCase()}!`,
+                    languageId: 'text',
+                },
+            ], {
+                title: `Twitter Podium Results for ${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")}`,
+                description: ' ',
+            });
+
+            await formatchannel.send(`**__Twitter Tournament Ad__**\n> ${response.url}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
         });
     }
 }
