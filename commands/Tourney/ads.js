@@ -65,7 +65,7 @@ module.exports = {
             elim = "Double"
         }
 
-        let date = Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').add(7, 'hours'))
+        let date = Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss'))
         date = moment(date).format('LL')
 
 
