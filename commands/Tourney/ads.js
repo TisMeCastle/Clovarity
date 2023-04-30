@@ -54,7 +54,7 @@ module.exports = {
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
             week = "Weekly"
         } else {
-            week = "Bi-Weekly"
+            week = "Weekly"
         }
 
         let elim = "";
@@ -62,7 +62,15 @@ module.exports = {
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
             elim = "Single"
         } else {
-            elim = "Double"
+            elim = "Single"
+        }
+
+        let players = "";
+
+        if (interaction.options.getString("tourney_type") === "Luck Fest") {
+            players = "2v2"
+        } else {
+            players = "3v3"
         }
 
         let date = Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss'))
@@ -71,13 +79,13 @@ module.exports = {
 
         interaction.reply({
             content: `
-> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
-> CA + US | 3v3 ${elim} Elimination
+> CA + US | ${players} ${elim} Elimination
 > 
 > :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
@@ -94,13 +102,13 @@ module.exports = {
         setTimeout(function () {
             interaction.editReply({
                 content: `
-                > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+                > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                 > 
                 > :date: **__Date & Time:__**
                 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                 > 
                 > :scroll: __**Format:**__
-                > CA + US | 3v3 ${elim} Elimination
+                > CA + US | ${players} ${elim} Elimination
                 > 
                 > :joystick: __**Signup Links:**__
                 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
@@ -120,13 +128,13 @@ module.exports = {
            i.update({ content: `Check <#1059563002875084900> and <#1059569184880738334>!`, ephemeral: true, components: [] });
             gameChannel.send({
                 content: `
-                            > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+                            > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
                             > :date: **__Date & Time:__**
                             > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                             > 
                             > :scroll: __**Format:**__
-                            > CA + US | 3v3 ${elim} Elimination
+                            > CA + US | ${players} ${elim} Elimination
                             > 
                             > :joystick: __**Signup Links:**__
                             > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
@@ -143,7 +151,7 @@ module.exports = {
                     name: ' ',
                     content: `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨
                 
-CA + US | 3v3 ${elim} Elimination
+CA + US | ${players} ${elim} Elimination
 ${date} | 8pm EST
                                 
 Signup Links:⚽️
@@ -162,13 +170,13 @@ Second Place = $30`,
 
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
             formatchannel.send(`\`\`\`
-> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 3v3 Tournament [#${interaction.options.getString("tourney_number")}]__**
+> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
-> CA + US | 3v3 ${elim} Elimination
+> CA + US | ${players} ${elim} Elimination
 > 
 > :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
