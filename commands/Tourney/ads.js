@@ -6,7 +6,7 @@ const converter = require('number-to-words');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ads1")
+        .setName("ads")
         .setDescription("Posts Custom Ads")
         .addStringOption(option =>
             option
@@ -16,7 +16,7 @@ module.exports = {
                 .addChoices(
                     { name: 'Clover Clash', value: 'Clover Clash' },
                     { name: 'Luck Fest', value: 'Luck Fest' },
-                    { name: 'CC\'s', value: 'cc' },
+                    { name: 'CRLS PartyTimeDan', value: 'CRLS' },
                 )
         )
         .addStringOption(option =>
@@ -31,6 +31,15 @@ module.exports = {
                 .setName("date")
                 .setDescription('🚨🚨🚨Year/Month/Day Of The Tournament🚨🚨🚨')
                 .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("creator")
+                .setDescription('Which creator is this for!')
+                .setRequired(false)
+                .addChoices(
+                    { name: 'PartyTimeDan', value: 'dan' },
+                )
         ),
     async execute(interaction) {
 
@@ -49,24 +58,25 @@ module.exports = {
                     .setDisabled(true)
             );
 
-        let week = "";
-
-        if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            week = "Weekly"
-        } else {
-            week = "Weekly"
+        let creator = "";
+        if (interaction.options.getString("tourney_type") === "CRLS") {
+            creator = interaction.options.getString("creator")
         }
 
-        let elim = "";
-
+        let week = "".replace(' ', '');
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
+            week = "Weekly "
+        } 
+        if (interaction.options.getString("tourney_type") === "Clover Clash") {
+            week = "Weekly "
+        } 
+
+        let elim = "Single";
+        /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
             elim = "Single"
-        } else {
-            elim = "Single"
-        }
+        }*/
 
         let players = "";
-
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
             players = "2v2"
         } else {
@@ -79,7 +89,7 @@ module.exports = {
 
         interaction.reply({
             content: `
-> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
+> **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -89,7 +99,7 @@ module.exports = {
 > 
 > :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
-> https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
+> https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
@@ -102,7 +112,7 @@ module.exports = {
         setTimeout(function () {
             interaction.editReply({
                 content: `
-                > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
+                > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                 > 
                 > :date: **__Date & Time:__**
                 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -112,7 +122,7 @@ module.exports = {
                 > 
                 > :joystick: __**Signup Links:**__
                 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
-                > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
+                > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
                 > 
                 > __**Prize:**__
                 > **First Place =** \`$70\`
@@ -125,10 +135,10 @@ module.exports = {
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
         collector.on('collect', async i => {
-           i.update({ content: `Check <#1059563002875084900> and <#1059569184880738334>!`, ephemeral: true, components: [] });
+            i.update({ content: `Check <#1059563002875084900> and <#1059569184880738334>!`, ephemeral: true, components: [] });
             gameChannel.send({
                 content: `
-                            > **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
+                            > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
                             > :date: **__Date & Time:__**
                             > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -138,7 +148,7 @@ module.exports = {
                             > 
                             > :joystick: __**Signup Links:**__
                             > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
-                            > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
+                            > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
                             > 
                             > __**Prize:**__
                             > **First Place =** \`$70\`
@@ -156,7 +166,7 @@ ${date} | 8pm EST
                                 
 Signup Links:⚽️
 https://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
-https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
+https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}
                                 
 Prize:🍀
 First Place = $70
@@ -170,7 +180,7 @@ Second Place = $30`,
 
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
             formatchannel.send(`\`\`\`
-> **__Clovarity's ${week} ${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
+> **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
 > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
@@ -180,7 +190,7 @@ Second Place = $30`,
 > 
 > :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
-> https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
+> https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
@@ -203,7 +213,7 @@ Second Place = $30`,
 @
 @
                     
-Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOrdinal(interaction.options.getString("tourney_number"))} ${interaction.options.getString("tourney_type")} ${week.toLowerCase()}!`,
+Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOrdinal(interaction.options.getString("tourney_number"))} ${interaction.options.getString("tourney_type")} ${week.toLowerCase().replace(' ', '')}!`,
                     languageId: 'text',
                 },
             ], {
