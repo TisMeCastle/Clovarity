@@ -35,10 +35,25 @@ module.exports = {
         .addStringOption(option =>
             option
                 .setName("creator")
-                .setDescription('Which creator is this for!')
+                .setDescription('For a CLRS | Pick A Creator!')
                 .setRequired(false)
                 .addChoices(
                     { name: 'PartyTimeDan', value: 'dan' },
+                    { name: 'Coming Soon', value: 'dan' },
+                )
+        )
+        .addStringOption(option =>
+            option
+                .setName("times")
+                .setDescription('For a CLRS | Pick A Time!')
+                .setRequired(false)
+                .addChoices(
+                    { name: '9pm EST', value: '18:00:00' },
+                    { name: '8pm EST', value: '17:00:00' },
+                    { name: '7pm EST', value: '16:00:00' },
+                    { name: '6pm EST', value: '15:00:00' },
+                    { name: '5pm EST', value: '14:00:00' },
+                    { name: '4pm EST', value: '13:00:00' },
                 )
         ),
     async execute(interaction) {
@@ -83,7 +98,12 @@ module.exports = {
             players = "3v3"
         }
 
-        let date = Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss'))
+        let time = "17:00:00";
+        if (interaction.options.getString("tourney_type") === "CRLS") {
+            time = interaction.options.getString("times")
+        }
+
+        let date = Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss'))
         date = moment(date).format('LL')
 
 
@@ -92,7 +112,7 @@ module.exports = {
 > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
-> ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+> ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
 > CA + US | ${players} ${elim} Elimination
@@ -115,7 +135,7 @@ module.exports = {
                 > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                 > 
                 > :date: **__Date & Time:__**
-                > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+                > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                 > 
                 > :scroll: __**Format:**__
                 > CA + US | ${players} ${elim} Elimination
@@ -141,7 +161,7 @@ module.exports = {
                             > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
                             > :date: **__Date & Time:__**
-                            > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+                            > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
                             > 
                             > :scroll: __**Format:**__
                             > CA + US | ${players} ${elim} Elimination
@@ -183,7 +203,7 @@ Second Place = $30`,
 > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
 > :date: **__Date & Time:__**
-> ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} 17:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
+> ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
 > 
 > :scroll: __**Format:**__
 > CA + US | ${players} ${elim} Elimination
