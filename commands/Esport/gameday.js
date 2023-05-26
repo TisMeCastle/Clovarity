@@ -28,6 +28,17 @@ module.exports = {
 
 
 			const inputFilePath = './commands/Esport/result.svg'
+
+			if (fs.existsSync('./commands/Esport/result.svg')) {
+				console.log('lit')
+			} else {
+				setTimeout(() => {
+					fs.existsSync('./commands/Esport/result.svg')
+					console.log('oof')
+				}, 300)
+			}
+
+
 			const outputFilePath = await convertFile(inputFilePath, {
 				puppeteer: {
 				  args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -44,6 +55,7 @@ module.exports = {
 				try {
 					fs.unlinkSync('./commands/Esport/result.png');
 					fs.unlinkSync('./commands/Esport/result.svg');
+					console.log('Gameday files deleted!')
 				} catch (err) {
 					console.error(err);
 				}

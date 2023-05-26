@@ -42,6 +42,18 @@ module.exports = {
 
 
 			const inputFilePath = './commands/Esport/defresult.svg'
+
+
+			if (fs.existsSync('./commands/Esport/defresult.svg')) {
+				console.log('lit')
+			} else {
+				setTimeout(() => {
+					fs.existsSync('./commands/Esport/defresult.svg')
+					console.log('oof')
+				}, 300)
+			}
+
+
 			const outputFilePath = await convertFile(inputFilePath, {
 				puppeteer: {
 				  args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -58,6 +70,7 @@ module.exports = {
 				try {
 					fs.unlinkSync('./commands/Esport/defresult.png');
 					fs.unlinkSync('./commands/Esport/defresult.svg');
+					console.log('Defeat files deleted!')
 				} catch (err) {
 					console.error(err);
 				}

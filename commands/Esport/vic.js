@@ -42,11 +42,22 @@ module.exports = {
 
 
 			const inputFilePath = './commands/Esport/vicresult.svg'
+
+				if (fs.existsSync('./commands/Esport/vicresult.svg')) {
+					console.log('lit')
+				} else {
+					setTimeout(() => {
+						fs.existsSync('./commands/Esport/vicresult.svg')
+						console.log('oof')
+					}, 400)
+				}
+
+
 			const outputFilePath = await convertFile(inputFilePath, {
 				puppeteer: {
-				  args: ['--no-sandbox', '--disable-setuid-sandbox']
+					args: ['--no-sandbox', '--disable-setuid-sandbox']
 				}
-			  });
+			});
 
 			interaction.editReply({
 				files: [{
@@ -58,10 +69,11 @@ module.exports = {
 				try {
 					fs.unlinkSync('./commands/Esport/vicresult.png');
 					fs.unlinkSync('./commands/Esport/vicresult.svg');
+					console.log('Victory files deleted!')
 				} catch (err) {
 					console.error(err);
 				}
-			}, 10000)
+			}, 5000)
 		});
 	}
 }
