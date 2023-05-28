@@ -17,5 +17,7 @@ module.exports = {
 				content: `${interaction.options.getMentionable("user")} is now a Clovarity Partner!`,
 				ephemeral: true
 			});
+
+			interaction.guild.channels.cache.find(channel => channel.id === '1059562561131003924').send(`<@821248918214017034> | ${interaction.user} has added <@${interaction.options.getMentionable("user").id}> to the Partner Role!`)
     }
 }
