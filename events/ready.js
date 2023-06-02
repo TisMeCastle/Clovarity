@@ -22,7 +22,7 @@ module.exports = {
 			const activity = activities[currentIndex];
 			client.user.setActivity(activity, {
 				type: "STREAMING",
-				url: "https://twitch.tv/clovarityesports"
+				url: "https://twitch.tv/clovarity"
 			});
 			currentIndex = currentIndex >= activities.length - 1
 				? 0
