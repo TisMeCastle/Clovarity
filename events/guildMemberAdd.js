@@ -14,13 +14,13 @@ module.exports = {
 			const message = new MessageEmbed()
 				.setTitle('__**Welcome To Clovarity!!!**__')
 				.setURL('https://solo.to/Clovarity')
-				.setDescription(`Welcome <@${member.user.id}> to Clovarity! Please take your time to visit <#${rules}>, grab the roles and follow our rules! Enjoy your stay!`)
+				.setDescription(`Welcome ${member.user.username} to Clovarity! Please take your time to visit <#${rules}>, grab the roles and follow our rules! Enjoy your stay!`)
 				.setImage(`https://media.discordapp.net/attachments/936495048223244390/1067945439707541574/Logo_With_Full_Name.png?width=1440&height=413`)
 				.setFooter({ text: `We Hope You Have A Great Time! If You Need Help Use "/ticket" And Staff Will Assist You! Good Luck, Have Fun` })
 				.setColor('#00ff43')
 
 			const channel = member.guild.channels.cache.get(welcome)
-			channel.send(`<@${member.id}> Welcome To Clovarity!`)
+			channel.send(`\`${member.user.username}\` Welcome To Clovarity!`)
 			channel.send({ embeds: [message] })
 
 			//Member Count Updates
