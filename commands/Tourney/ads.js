@@ -93,7 +93,7 @@ module.exports = {
 
         let players = "";
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            players = "2v2"
+            players = "4v4"
         } else {
             players = "3v3"
         }
