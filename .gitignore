@@ -2,3 +2,5 @@ node_modules/
 commands/Testing_Events
 .env
 commands/Server/massemail.js
+commands/Server/sendTweet.js
+commands/Tourney/adsTest.js

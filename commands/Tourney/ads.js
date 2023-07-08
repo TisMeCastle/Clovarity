@@ -3,6 +3,14 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 const sourcebin = require('sourcebin_js');
 const moment = require('moment');
 const converter = require('number-to-words');
+const { TwitterApi } = require('twitter-api-v2');
+
+const client = new TwitterApi({
+    appKey: process.env.TWITTER_CONSUMER_KEY,
+    appSecret: process.env.TWITTER_CONSUMER_SECRET,
+    accessToken: process.env.TWITTER_ACCESS_TOKEN,
+    accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -176,27 +184,21 @@ module.exports = {
             }).then(interaction =>
 
                 interaction.crosspost())
-            let response = await sourcebin.create([
-                {
-                    name: ' ',
-                    content: `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨
-                
-CA + US | ${players} ${elim} Elimination
-${date} | 8pm EST
-                                
-Signup Links:⚽️
-https://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
-https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}
-                                
-Prize:🍀
-First Place = $70
-Second Place = $30`,
-                    languageId: 'text',
-                },
-            ], {
-                title: `Twitter Ad for ${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")}`,
-                description: ' ',
-            });
+
+                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`
+                var tweetID;
+
+                async function postTweet(tweetText) {
+                    try {
+                        const tweet = await client.v2.tweet(tweetText);
+                        console.log(`Tweet posted with ID ${tweet.data.id}`);
+                        tweetID = tweet.data.id
+                    } catch (error) {
+                        console.error(`Failed to post tweet: ${error}`);
+                    }
+                }
+        
+                postTweet(tweetText);
 
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
             formatchannel.send(`\`\`\`
@@ -241,7 +243,7 @@ Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOr
                 description: ' ',
             });
 
-            await formatchannel.send(`**__Twitter Tournament Ad__**\n> ${response.url}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
+            await formatchannel.send(`**__Twitter Tournament Ad__**\n>https://twitter.com/Clovarity/status/${tweetID}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
         });
     }
-}
+}//
