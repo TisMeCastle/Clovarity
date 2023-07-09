@@ -197,7 +197,6 @@ module.exports = {
                         console.error(`Failed to post tweet: ${error}`);
                     }
                 }
-        
                 postTweet(tweetText);
 
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
