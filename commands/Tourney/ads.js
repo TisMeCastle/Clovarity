@@ -242,7 +242,7 @@ Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOr
                 description: ' ',
             });
 
-            await formatchannel.send(`**__Twitter Tournament Ad__**\n>https://twitter.com/Clovarity/status/${tweetID}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
+            await formatchannel.send(`**__Twitter Tournament Ad__**\n> https://twitter.com/Clovarity/status/${tweetID}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
         });
     }
 }//
