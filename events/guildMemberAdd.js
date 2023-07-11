@@ -7,10 +7,7 @@ const { MessageEmbed, MessageActionRow, MessageButton, Modal, TextInputComponent
 module.exports = {
 	name: "guildMemberAdd",
 	async execute(member, guild) {
-
 		try {
-
-
 			const message = new MessageEmbed()
 				.setTitle('__**Welcome To Clovarity!!!**__')
 				.setURL('https://solo.to/Clovarity')
@@ -20,13 +17,11 @@ module.exports = {
 				.setColor('#00ff43')
 
 			const channel = member.guild.channels.cache.get(welcome)
-			channel.send(`\`${member.user.username}\` Welcome To Clovarity!`)
-			channel.send({ embeds: [message] })
+			channel.send({ content: `\`${member.user.username}\` Welcome To Clovarity!`, embeds: [message] })
 
 			//Member Count Updates
 			const MemberCountChannel = member.guild.channels.cache.get(MCount);
 			MemberCountChannel.setName(`🚀┃Members: ${member.guild.memberCount}`);
-
 
 			const buttonData = new MessageActionRow()
 				.addComponents(

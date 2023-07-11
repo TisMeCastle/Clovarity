@@ -1,5 +1,6 @@
 node_modules/
 commands/Testing_Events
+commands/Uploading
 .env
 commands/Server/massemail.js
 commands/Server/sendTweet.js
