@@ -99,6 +99,22 @@ module.exports = {
             elim = "Single"
         }*/
 
+        let stream = "\n> :camera_with_flash:**__Stream Link:__**\n> https://twitch.tv/clovarity\n> ";
+        if (interaction.options.getString("tourney_type") === "Luck Fest") {
+            stream = ""
+        }
+        if (interaction.options.getString("stream_link") != null) {
+            stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${interaction.options.getString("stream_link")}\n> `
+        }
+
+        let stream2 = "Live Stream:📸\nhttps://twitch.tv/clovarity\n\n";
+        if (interaction.options.getString("tourney_type") === "Luck Fest") {
+            stream2 = ""
+        }
+        if (interaction.options.getString("stream_link") != null) {
+            stream2 = `Live Stream:📸\n${interaction.options.getString("stream_link")}\n\n `
+        }
+
         let players = "";
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
             players = "2v2"
@@ -128,6 +144,7 @@ module.exports = {
 > :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
 > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
+> ${stream}
 > 
 > __**Prize:**__
 > **First Place =** \`$70\`
@@ -151,7 +168,7 @@ module.exports = {
                 > :joystick: __**Signup Links:**__
                 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
                 > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
-                > 
+                > ${stream}
                 > __**Prize:**__
                 > **First Place =** \`$70\`
                 > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData]
@@ -177,7 +194,7 @@ module.exports = {
                             > :joystick: __**Signup Links:**__
                             > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
                             > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
-                            > 
+                            > ${stream}
                             > __**Prize:**__
                             > **First Place =** \`$70\`
                             > **Second Place =** \`$30\`\n<@&1059582067597385770>`
@@ -185,7 +202,7 @@ module.exports = {
 
                 interaction.crosspost())
 
-                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`
+                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\n${stream2}Prize:🍀\nFirst Place = $70\nSecond Place = $30`
                 var tweetID;
 
                 async function postTweet(tweetText) {
@@ -212,7 +229,7 @@ module.exports = {
 > :joystick: __**Signup Links:**__
 > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
 > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
-> 
+> ${stream}
 > __**Prize:**__
 > **First Place =** \`$70\`
 > **Second Place =** \`$30\`
