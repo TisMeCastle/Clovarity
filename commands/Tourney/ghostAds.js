@@ -3,18 +3,10 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 const sourcebin = require('sourcebin_js');
 const moment = require('moment');
 const converter = require('number-to-words');
-const { TwitterApi } = require('twitter-api-v2');
-
-const client = new TwitterApi({
-    appKey: process.env.TWITTER_CONSUMER_KEY,
-    appSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: process.env.TWITTER_ACCESS_TOKEN,
-    accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-});
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ads")
+        .setName("ghostads")
         .setDescription("Posts Custom Ads")
         .addStringOption(option =>
             option
@@ -95,9 +87,6 @@ module.exports = {
         } 
 
         let elim = "Single";
-        /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            elim = "Single"
-        }*/
 
         let stream = "\n> :camera_with_flash:**__Stream Link:__**\n> https://twitch.tv/clovarity\n> ";
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
@@ -180,42 +169,31 @@ module.exports = {
 
         collector.on('collect', async i => {
             i.update({ content: `Check <#1059563002875084900> and <#1059569184880738334>!`, ephemeral: true, components: [] });
-            gameChannel.send({
-                content: `
-                            > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
-                            > 
-                            > :date: **__Date & Time:__**
-                            > ${`<t:${Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000 + 25200}:F> (<t:${Math.floor((moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss').valueOf()) / 1000) + 24300}:R>)`}
-                            > 
-                            > :scroll: __**Format:**__
-                            > CA + US | ${players} ${elim} Elimination
-                            > 
-                            > :joystick: __**Signup Links:**__
-                            > https://www.start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")} (Use This Bracket)
-                            > https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")} (__**Must**__ Sign Up)
-                            > ${stream}
-                            > :money_with_wings: __**Prize:**__
-                            > **First Place =** \`$70\`
-                            > **Second Place =** \`$30\`\n<@&1059582067597385770>`
-            }).then(interaction =>
 
-                interaction.crosspost())
+                let response = await sourcebin.create([
+                    {
+                        name: ' ',
+                        content: `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨
+                    
+CA + US | ${players} ${elim} Elimination
+${date} | 8pm EST
+                                    
+Signup Links:⚽️
+https://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}
+https://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\n${stream2}
+                                    
+Prize:🍀
+First Place = $70
+Second Place = $30`,
+                        languageId: 'text',
+                    },
+                ], {
+                    title: `Twitter Ad for ${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")}`,
+                    description: ' ',
+                });
 
-                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\n${stream2}Prize:🍀\nFirst Place = $70\nSecond Place = $30`
-                var tweetID;
 
-                async function postTweet(tweetText) {
-                    try {
-                        const tweet = await client.v2.tweet(tweetText);
-                        console.log(`Tweet posted with ID ${tweet.data.id}`);
-                        tweetID = tweet.data.id
-                    } catch (error) {
-                        console.error(`Failed to post tweet: ${error}`);
-                    }
-                }
-                postTweet(tweetText);
-
-            formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
+            formatchannel.send(`# Remember to Post in <#1059569184880738334>!!!\n<@${interaction.user.id}>\n<@${interaction.user.id}>\n<@${interaction.user.id}>`)
             formatchannel.send(`\`\`\`
 > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
 > 
@@ -258,7 +236,7 @@ Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOr
                 description: ' ',
             });
 
-            await formatchannel.send(`**__Twitter Tournament Ad__**\n> https://twitter.com/Clovarity/status/${tweetID}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
+            await formatchannel.send(`**__Twitter Tournament Ad__**\n> ${response.url}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
         });
     }
 }
