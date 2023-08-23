@@ -42,6 +42,18 @@ module.exports = {
         )
         .addStringOption(option =>
             option
+                .setName("stream_link")
+                .setDescription('Besides our main acc, who is streaming?')
+                .setRequired(false)
+        )
+        .addStringOption(option =>
+            option
+                .setName("sponsor")
+                .setDescription('Who is the lit brand that sponsored us?')
+                .setRequired(false)
+        )
+        .addStringOption(option =>
+            option
                 .setName("creator")
                 .setDescription('For a CLRS | Pick A Creator!')
                 .setRequired(false)
@@ -66,6 +78,8 @@ module.exports = {
         ),
     async execute(interaction) {
 
+
+
         const gameChannelId = "1059569184880738334"
         const gameChannel = interaction.guild.channels.cache.find(channel => channel.id === gameChannelId)
 
@@ -86,34 +100,31 @@ module.exports = {
             creator = interaction.options.getString("creator")
         }
 
+        let sponsor = "";
+        if (interaction.options.getString("sponsor") != null) {
+            sponsor = interaction.options.getString("sponsor")
+        }
+
         let week = "".replace(' ', '');
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
             week = "Weekly "
-        } 
+        }
         if (interaction.options.getString("tourney_type") === "Clover Clash") {
             week = "Weekly "
-        } 
+        }
+
+        let stream = "\n> :camera_with_flash:**__Stream Link:__**\n> https://twitch.tv/incorrectterror\n> ";
+        /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
+            stream = ""
+        }
+        if (interaction.options.getString("stream_link") != null) {
+            stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${interaction.options.getString("stream_link")}\n> `
+        }*/
 
         let elim = "Single";
         /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
             elim = "Single"
         }*/
-
-        let stream = "\n> :camera_with_flash:**__Stream Link:__**\n> https://twitch.tv/clovarity\n> ";
-        if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            stream = ""
-        }
-        if (interaction.options.getString("stream_link") != null) {
-            stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${interaction.options.getString("stream_link")}\n> `
-        }
-
-        let stream2 = "Live Stream:📸\nhttps://twitch.tv/clovarity\n\n";
-        if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            stream2 = ""
-        }
-        if (interaction.options.getString("stream_link") != null) {
-            stream2 = `Live Stream:📸\n${interaction.options.getString("stream_link")}\n\n `
-        }
 
         let players = "";
         if (interaction.options.getString("tourney_type") === "Luck Fest") {
