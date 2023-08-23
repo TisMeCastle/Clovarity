@@ -113,13 +113,15 @@ module.exports = {
             week = "Weekly "
         }
 
-        let stream = "\n> :camera_with_flash:**__Stream Link:__**\n> https://twitch.tv/incorrectterror\n> ";
+        let streamLink = "https://twitch.tv/incorrectterror"
+        let stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${streamLink}\n> `;
         /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
             stream = ""
         }
         if (interaction.options.getString("stream_link") != null) {
             stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${interaction.options.getString("stream_link")}\n> `
         }*/
+        let stream2 = `Live Stream:📸\n${streamLink}`;
 
         let elim = "Single";
         /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
@@ -212,7 +214,7 @@ module.exports = {
 
                 interaction.crosspost())
 
-                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\n${stream}Prize:🍀\nFirst Place = $70\nSecond Place = $30`
+                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${interaction.options.getString("tourney_type").toLowerCase().replace(/\s/g, '')}${creator}${interaction.options.getString("tourney_number")}\n\n${stream2}\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`
                 var tweetID;
 
                 async function postTweet(tweetText) {
