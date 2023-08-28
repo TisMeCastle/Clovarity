@@ -19,7 +19,7 @@ module.exports = {
 			if (err) {
 				return console.log(err);
 			}
-			const r = data.replace('https://media.discordapp.net/attachments/936495048223244390/1075573696598659193/Williams_Resolve_full_lightmode.png?width=1440&height=474', `${interaction.options.getString("opposition_logo_url")}`);
+			const r = data.replace('opplogo', `${interaction.options.getString("opposition_logo_url")}`);
 
 
 			fs.writeFile('./commands/Esport/result.svg', r, function (err) {
