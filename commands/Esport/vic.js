@@ -1,5 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { convertFile } = require('convert-svg-to-png');
+const { TwitterApi } = require('twitter-api-v2');
+
+const client = new TwitterApi({
+    appKey: process.env.TWITTER_CONSUMER_KEY,
+    appSecret: process.env.TWITTER_CONSUMER_SECRET,
+    accessToken: process.env.TWITTER_ACCESS_TOKEN,
+    accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -65,6 +73,29 @@ module.exports = {
 				}],
 			});
 
+			const tweetText = `Big W from the boys, took the series ${interaction.options.getString("opposition_score")}-${interaction.options.getString("clovarity_score")}!`
+			const mediaId = await client.v1.uploadMedia("./commands/Esport/vicresult.png")
+                var tweetID;
+
+                async function postTweet(tweetText) {
+                    try {
+                        const tweet = await client.v2.tweet({
+							text: tweetText,
+							media: { media_ids: [mediaId] },
+						});
+
+                        console.log(`Tweet posted with ID ${tweet.data.id}`);
+                        tweetID = tweet.data.id
+                    } catch (error) {
+                        console.error(`Failed to post tweet: ${error}`);
+                    }
+                }
+                postTweet(tweetText);
+
+				setTimeout(() => {	
+					interaction.channel.send(`**__Victory Twitter Post__**\n> https://twitter.com/Clovarity/status/${tweetID}`)
+				}, 1000)
+
 			setTimeout(() => {
 				try {
 					fs.unlinkSync('./commands/Esport/vicresult.png');
@@ -73,7 +104,7 @@ module.exports = {
 				} catch (err) {
 					console.error(err);
 				}
-			}, 5000)
+			}, 10000)
 		});
 	}
 }

@@ -1,5 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { convertFile } = require('convert-svg-to-png');
+const { TwitterApi } = require('twitter-api-v2');
+
+const client = new TwitterApi({
+    appKey: process.env.TWITTER_CONSUMER_KEY,
+    appSecret: process.env.TWITTER_CONSUMER_SECRET,
+    accessToken: process.env.TWITTER_ACCESS_TOKEN,
+    accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,7 +18,21 @@ module.exports = {
 				.setName("opposition_logo_url")
 				.setDescription("Send their logo so I can add it to the graphic")
 				.setRequired(true)
-		),
+		)
+		.addStringOption((option) =>
+		option
+			.setName("game_time")
+			.setDescription("What time is the game at?")
+			.setRequired(true)
+			.addChoices(
+				{ name: '9pm EST', value: '9pm EST' },
+				{ name: '8pm EST', value: '8pm EST' },
+				{ name: '7pm EST', value: '7pm EST' },
+				{ name: '6pm EST', value: '6pm EST' },
+				{ name: '5pm EST', value: '5pm EST' },
+				{ name: '4pm EST', value: '4pm EST' },
+			)
+	),
 	async execute(interaction) {
 		interaction.deferReply()
 
@@ -45,11 +67,35 @@ module.exports = {
 				}
 			  });
 
-			interaction.editReply({
+			  interaction.editReply({
 				files: [{
 					attachment: outputFilePath,
 				}],
 			});
+
+			const tweetText = `Gameday! The boys are playing at ${interaction.options.getString("game_time")}, we will be posting the results after the series!`
+			const mediaId = await client.v1.uploadMedia("./commands/Esport/result.png")
+                var tweetID;
+
+                async function postTweet(tweetText) {
+                    try {
+                        const tweet = await client.v2.tweet({
+							text: tweetText,
+							media: { media_ids: [mediaId] },
+						});
+
+                        console.log(`Tweet posted with ID ${tweet.data.id}`);
+                        tweetID = tweet.data.id
+                    } catch (error) {
+                        console.error(`Failed to post tweet: ${error}`);
+                    }
+                }
+                postTweet(tweetText);
+
+				setTimeout(() => {	
+					interaction.channel.send(`**__Gameday Twitter Post__**\n> https://twitter.com/Clovarity/status/${tweetID}`)
+				}, 1000)
+
 
 			setTimeout(() => {
 				try {
