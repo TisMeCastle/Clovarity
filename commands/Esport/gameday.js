@@ -35,7 +35,7 @@ module.exports = {
 				setTimeout(() => {
 					fs.existsSync('./commands/Esport/result.svg')
 					console.log('oof')
-				}, 300)
+				}, 500)
 			}
 
 

@@ -49,7 +49,7 @@ module.exports = {
 					setTimeout(() => {
 						fs.existsSync('./commands/Esport/vicresult.svg')
 						console.log('oof')
-					}, 400)
+					}, 500)
 				}
 
 
