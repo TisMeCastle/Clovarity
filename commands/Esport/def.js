@@ -27,7 +27,7 @@ module.exports = {
 		interaction.deferReply()
 
 		var fs = require('fs')
-		await fs.readFile("./commands/Esport/def.svg", 'utf8', async function (err, data) {
+		await fs.readFile("./commands/Esport/Defeat_SVG.svg", 'utf8', async function (err, data) {
 			if (err) {
 				return console.log(err);
 			}
