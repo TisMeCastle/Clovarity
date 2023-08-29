@@ -1,12 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { convertFile } = require('convert-svg-to-png');
+const { MessageActionRow, MessageButton } = require("discord.js");
 const { TwitterApi } = require('twitter-api-v2');
 
 const client = new TwitterApi({
-    appKey: process.env.TWITTER_CONSUMER_KEY,
-    appSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: process.env.TWITTER_ACCESS_TOKEN,
-    accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+	appKey: process.env.TWITTER_CONSUMER_KEY,
+	appSecret: process.env.TWITTER_CONSUMER_SECRET,
+	accessToken: process.env.TWITTER_ACCESS_TOKEN,
+	accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
 module.exports = {
@@ -25,6 +26,8 @@ module.exports = {
 			.setDescription("What time is the game at?")
 			.setRequired(true)
 			.addChoices(
+				{ name: '11pm EST', value: '11pm EST' },
+				{ name: '10pm EST', value: '10pm EST' },
 				{ name: '9pm EST', value: '9pm EST' },
 				{ name: '8pm EST', value: '8pm EST' },
 				{ name: '7pm EST', value: '7pm EST' },
@@ -52,60 +55,95 @@ module.exports = {
 			const inputFilePath = './commands/Esport/result.svg'
 
 			if (fs.existsSync('./commands/Esport/result.svg')) {
-				console.log('lit')
+				console.log('not lit')
 			} else {
 				setTimeout(() => {
 					fs.existsSync('./commands/Esport/result.svg')
-					console.log('oof')
+					console.log('lit')
 				}, 500)
 			}
 
 
 			const outputFilePath = await convertFile(inputFilePath, {
 				puppeteer: {
-				  args: ['--no-sandbox', '--disable-setuid-sandbox']
+					args: ['--no-sandbox', '--disable-setuid-sandbox']
 				}
-			  });
+			});
 
-			  interaction.editReply({
+			const buttonData = new MessageActionRow()
+				.addComponents(
+					new MessageButton()
+						.setCustomId('sendGameTweet')
+						.setLabel('Send Tweet')
+						.setStyle(3)
+				);
+
+			interaction.editReply({
+				components: [buttonData],
 				files: [{
 					attachment: outputFilePath,
 				}],
-			});
+			})
 
-			const tweetText = `Gameday! The boys are playing at ${interaction.options.getString("game_time")}, we will be posting the results after the series!`
-			const mediaId = await client.v1.uploadMedia("./commands/Esport/result.png")
-                var tweetID;
+			const filter = (interaction) => interaction.customId === 'sendGameTweet'
+			const collector = interaction.channel.createMessageComponentCollector({ filter });
 
-                async function postTweet(tweetText) {
-                    try {
-                        const tweet = await client.v2.tweet({
-							text: tweetText,
-							media: { media_ids: [mediaId] },
-						});
+			collector.on('collect', async i => {
+				i.update({ content: `Tweet is sending!`, ephemeral: true, components: [], files: [] });
 
-                        console.log(`Tweet posted with ID ${tweet.data.id}`);
-                        tweetID = tweet.data.id
-                    } catch (error) {
-                        console.error(`Failed to post tweet: ${error}`);
-                    }
-                }
-                postTweet(tweetText);
-
-				setTimeout(() => {	
-					interaction.channel.send(`**__Gameday Twitter Post__**\n> https://twitter.com/Clovarity/status/${tweetID}`)
-				}, 1000)
-
-
-			setTimeout(() => {
 				try {
-					fs.unlinkSync('./commands/Esport/result.png');
-					fs.unlinkSync('./commands/Esport/result.svg');
-					console.log('Gameday files deleted!')
-				} catch (err) {
-					console.error(err);
+					const tweetText = `Gameday! The boys are playing at ${interaction.options.getString("game_time")}, we will be posting the results after the series!`
+			const mediaId = await client.v1.uploadMedia("./commands/Esport/result.png")
+					var tweetID;
+
+					async function postTweet(tweetText) {
+						try {
+							const tweet = await client.v2.tweet({
+								text: tweetText,
+								media: { media_ids: [mediaId] },
+							});
+
+							console.log(`Tweet posted with ID ${tweet.data.id}`);
+							tweetID = tweet.data.id
+						} catch (error) {
+							console.error(`Failed to post tweet: ${error}`);
+						}
+					}
+					postTweet(tweetText);
+
+					setTimeout(() => {
+						interaction.editReply(`**__Gameday Twitter Post__**\n> https://twitter.com/Clovarity/status/${tweetID}`)
+					}, 750)
+
+					setTimeout(() => {
+						try {
+							fs.unlinkSync('./commands/Esport/result.png');
+							fs.unlinkSync('./commands/Esport/result.svg');
+							console.log('Game files deleted!')
+						} catch (err) {
+							console.error(err);
+						}
+					}, 10000)
+
+				} catch {
+
+					try {
+						fs.unlinkSync('./commands/Esport/result.png');
+						console.log('Game files deleted!')
+					} catch (err) {
+						console.error(err);
+					}
+
+					try {
+						fs.unlinkSync('./commands/Esport/result.svg');
+						console.log('Game files deleted!')
+					} catch (err) {
+						console.error(err);
+					}
+
+					await interaction.editReply({ content: 'It broke :skull:\nTry again pls' });
 				}
-			}, 10000)
+			})
 		});
 	}
 }
