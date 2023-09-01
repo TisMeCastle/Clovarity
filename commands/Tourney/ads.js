@@ -22,9 +22,10 @@ module.exports = {
                 .setDescription('Which Tournament Are You Posting For?')
                 .setRequired(true)
                 .addChoices(
-                    { name: 'Clover Clash', value: 'Clover Clash' },
-                    { name: 'Luck Fest', value: 'Luck Fest' },
-                    { name: 'CRLS PartyTimeDan', value: 'CRLS' },
+                    { name: 'Clover Clash 3v3', value: 'Clover Clash' },
+                    { name: 'Luck Fest 2v2', value: 'Luck Fest' },
+                    { name: 'Heatseeker 2v2', value: 'Heatseeker' },
+                    { name: 'Heatseeker 3v3', value: 'Heatseeker Trios' },
                 )
         )
         .addStringOption(option =>
@@ -39,46 +40,8 @@ module.exports = {
                 .setName("date")
                 .setDescription('🚨🚨🚨Year/Month/Day Of The Tournament🚨🚨🚨')
                 .setRequired(true)
-        )
-        .addStringOption(option =>
-            option
-                .setName("stream_link")
-                .setDescription('Besides our main acc, who is streaming?')
-                .setRequired(false)
-        )
-        .addStringOption(option =>
-            option
-                .setName("sponsor")
-                .setDescription('Who is the lit brand that sponsored us?')
-                .setRequired(false)
-        )
-        .addStringOption(option =>
-            option
-                .setName("creator")
-                .setDescription('For a CLRS | Pick A Creator!')
-                .setRequired(false)
-                .addChoices(
-                    { name: 'PartyTimeDan', value: 'dan' },
-                    { name: 'Coming Soon', value: 'dan' },
-                )
-        )
-        .addStringOption(option =>
-            option
-                .setName("times")
-                .setDescription('For a CLRS | Pick A Time!')
-                .setRequired(false)
-                .addChoices(
-                    { name: '9pm EST', value: '18:00:00' },
-                    { name: '8pm EST', value: '17:00:00' },
-                    { name: '7pm EST', value: '16:00:00' },
-                    { name: '6pm EST', value: '15:00:00' },
-                    { name: '5pm EST', value: '14:00:00' },
-                    { name: '4pm EST', value: '13:00:00' },
-                )
         ),
     async execute(interaction) {
-
-
 
         const gameChannelId = "1059569184880738334"
         const gameChannel = interaction.guild.channels.cache.find(channel => channel.id === gameChannelId)
@@ -95,50 +58,32 @@ module.exports = {
                     .setDisabled(true)
             );
 
+            let players = "";
+
+            if (interaction.options.getString("tourney_type") === "Clover Clash") {
+                players = "3v3"
+            }
+            else if (interaction.options.getString("tourney_type") === "Luck Fest") {
+                players = "2v2"
+            }
+            else if (interaction.options.getString("tourney_type") === "Heatseeker") {
+                players = "2v2"
+            }
+            else if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
+                players = "3v3"
+            }
+
         let creator = "";
-        if (interaction.options.getString("tourney_type") === "CRLS") {
-            creator = interaction.options.getString("creator")
-        }
 
-        let sponsor = "";
-        if (interaction.options.getString("sponsor") != null) {
-            sponsor = interaction.options.getString("sponsor")
-        }
-
-        let week = "".replace(' ', '');
-        if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            week = "Weekly "
-        }
-        if (interaction.options.getString("tourney_type") === "Clover Clash") {
-            week = "Weekly "
-        }
+        let week = "Weekly "
 
         let streamLink = "https://twitch.tv/incorrectterror"
         let stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${streamLink}\n> `;
-        /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            stream = ""
-        }
-        if (interaction.options.getString("stream_link") != null) {
-            stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${interaction.options.getString("stream_link")}\n> `
-        }*/
         let stream2 = `Live Stream:📸\n${streamLink}`;
 
         let elim = "Single";
-        /*if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            elim = "Single"
-        }*/
-
-        let players = "";
-        if (interaction.options.getString("tourney_type") === "Luck Fest") {
-            players = "2v2"
-        } else {
-            players = "3v3"
-        }
 
         let time = "17:00:00";
-        if (interaction.options.getString("tourney_type") === "CRLS") {
-            time = interaction.options.getString("times")
-        }
 
         let date = Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss'))
         date = moment(date).format('LL')
