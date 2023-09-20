@@ -40,6 +40,12 @@ module.exports = {
                 .setName("date")
                 .setDescription('🚨🚨🚨Year/Month/Day Of The Tournament🚨🚨🚨')
                 .setRequired(true)
+        )
+        .addBooleanOption(option =>
+            option
+                .setName("streamed")
+                .setDescription('Is it streamed on the Clovarity account?')
+                .setRequired(true)
         ),
     async execute(interaction) {
 
@@ -58,44 +64,46 @@ module.exports = {
                     .setDisabled(true)
             );
 
-            let players = "";
-            let link = "";
-
-            if (interaction.options.getString("tourney_type") === "Clover Clash") {
-                players = "3v3"
-            }
-            else if (interaction.options.getString("tourney_type") === "Luck Fest") {
-                players = "2v2"
-            }
-            else if (interaction.options.getString("tourney_type") === "Heatseeker") {
-                players = "2v2"
-            }
-            else if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
-                players = "3v3"
-            }
-
-            if (interaction.options.getString("tourney_type") === "Heatseeker") {
-                link = "Luck Fest"
-            }
-            if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
-                link = "Luck Fest"
-            }
-
+        let players = "";
+        let link = "";
         let creator = "";
-
-        let week = "Weekly "
-
-        let streamLink = "https://twitch.tv/clovarity"
-        let stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${streamLink}\n> `;
-        let stream2 = `Live Stream:📸\n${streamLink}`;
-
+        let week = "Weekly ";
         let elim = "Single";
-
         let time = "17:00:00";
+        let streamLink = "https://twitch.tv/clovarity";
+
+
+        if (interaction.options.getString("tourney_type") === "Clover Clash") {
+            players = "3v3"
+        }
+        else if (interaction.options.getString("tourney_type") === "Luck Fest") {
+            players = "2v2"
+            link = "LuckFest"
+        }
+        else if (interaction.options.getString("tourney_type") === "Heatseeker") {
+            players = "2v2"
+        }
+        else if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
+            players = "3v3"
+        }
+
+        if (interaction.options.getString("tourney_type") === "Heatseeker") {
+            link = "LuckFest"
+        }
+        if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
+            link = "LuckFest"
+        }
+
+        if (interaction.options.getBoolean("streamed") === true) {
+            stream = `\n> :camera_with_flash:**__Stream Link:__**\n> ${streamLink}\n> `
+            stream2 = `\n\nLive Stream:📸\n${streamLink}`;
+        } else {
+            stream = ``
+            stream2 = ``;
+        }
 
         let date = Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss'))
         date = moment(date).format('LL')
-
 
         interaction.reply({
             content: `
@@ -167,19 +175,19 @@ module.exports = {
 
                 interaction.crosspost())
 
-                const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${link}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${link}${creator}${interaction.options.getString("tourney_number")}\n\n${stream2}\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`
-                var tweetID;
+            const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${link}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${link}${creator}${interaction.options.getString("tourney_number")}${stream2}\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`
+            var tweetID;
 
-                async function postTweet(tweetText) {
-                    try {
-                        const tweet = await client.v2.tweet(tweetText);
-                        console.log(`Tweet posted with ID ${tweet.data.id}`);
-                        tweetID = tweet.data.id
-                    } catch (error) {
-                        console.error(`Failed to post tweet: ${error}`);
-                    }
+            async function postTweet(tweetText) {
+                try {
+                    const tweet = await client.v2.tweet(tweetText);
+                    console.log(`Tweet posted with ID ${tweet.data.id}`);
+                    tweetID = tweet.data.id
+                } catch (error) {
+                    console.error(`Failed to post tweet: ${error}`);
                 }
-                postTweet(tweetText);
+            }
+            postTweet(tweetText);
 
             formatchannel.send(`Copy Paste For Ad Use!!!\n<@${interaction.user.id}> <@&1093292345962807386>`)
             formatchannel.send(`\`\`\`
