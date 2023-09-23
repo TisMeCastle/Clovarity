@@ -17,8 +17,11 @@ module.exports = {
 				.setColor('#00ff43')
 
 			const channel = member.guild.channels.cache.get(welcome)
-			channel.send({ content: `\`${member.user.username}\` Welcome To Clovarity!`, embeds: [message] })
-			.catch(() => member.guild.channels.cache.get('1059563002875084900').send(`<@${member.id}> \`${member.id}\` \`${member.user.tag}\` somehow tried to double send their welcome message!`))
+			try {
+				channel.send({ content: `\`${member.user.username}\` Welcome To Clovarity!`, embeds: [message] })
+			} catch {
+				member.guild.channels.cache.get('1059563002875084900').send(`<@${member.id}> \`${member.id}\` \`${member.user.tag}\` somehow tried to double send their welcome message!`)
+			}
 
 			//Member Count Updates
 			const MemberCountChannel = member.guild.channels.cache.get(MCount);
