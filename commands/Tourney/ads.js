@@ -75,6 +75,7 @@ module.exports = {
 
         if (interaction.options.getString("tourney_type") === "Clover Clash") {
             players = "3v3"
+            link = "CloverClash"
         }
         else if (interaction.options.getString("tourney_type") === "Luck Fest") {
             players = "2v2"
@@ -82,15 +83,10 @@ module.exports = {
         }
         else if (interaction.options.getString("tourney_type") === "Heatseeker") {
             players = "2v2"
+            link = "LuckFest"
         }
         else if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
             players = "3v3"
-        }
-
-        if (interaction.options.getString("tourney_type") === "Heatseeker") {
-            link = "LuckFest"
-        }
-        if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
             link = "LuckFest"
         }
 
