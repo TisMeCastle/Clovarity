@@ -23,7 +23,7 @@ module.exports = {
         interaction.deferReply()
 
         var fs = require('fs')
-        
+
         await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
             if (err) {
                 return console.log(err);
@@ -33,7 +33,6 @@ module.exports = {
             fs.writeFile('./commands/graphics/PlayerBanner2.0result.svg', r, function (err) {
                 if (err) return console.log(err);
             });
-
 
                 const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'
 
