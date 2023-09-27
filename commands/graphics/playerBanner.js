@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { convertFile } = require('convert-svg-to-png');
 const { TwitterApi } = require('twitter-api-v2');
+var fs = require('fs')
 
 const client = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY,
@@ -26,7 +27,6 @@ module.exports = {
             fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg')
         }
 
-		var fs = require('fs')
 		await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
 			if (err) {
 				return console.log(err);
