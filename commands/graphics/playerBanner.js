@@ -22,6 +22,10 @@ module.exports = {
     async execute(interaction) {
         interaction.deferReply()
 
+        if(fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
+            fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg')
+        }
+
 		var fs = require('fs')
 		await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
 			if (err) {
