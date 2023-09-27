@@ -34,41 +34,47 @@ module.exports = {
             });
 
 
-            const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'
+                const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'
 
-            if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-                console.log('not lit');
-            } else {
-                setTimeout(() => {
-                    if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-                        console.log('not lit');
-                    } else {
-                        console.log('lit');
-                    }
-                }, 2000); // Wait for 2 seconds before re-checking
-            }
+                const fs = require('fs');
 
-            const outputFilePath = await convertFile(inputFilePath, {
-                puppeteer: {
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
-                },
-                width: 1500,
-                height: 500
-            });
-
-            interaction.editReply({
-                files: [outputFilePath],
-            })
-
-            setTimeout(() => {
-                try {
-                    fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.png');
-                    fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg');
-                    console.log('Files deleted!')
-                } catch (err) {
-                    console.error(err);
+                if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
+                    console.log('not lit');
+                    fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg')
+            
+                    setTimeout(() => {
+                        if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
+                            console.log('still there');
+                        } else {
+                            console.log('file disappeared');
+                        }
+                    }, 2000);
+                } else {
+                    console.log('lit');
                 }
-            }, 10000)
-        });
-    }
+                
+
+                const outputFilePath = await convertFile(inputFilePath, {
+                    puppeteer: {
+                        args: ['--no-sandbox', '--disable-setuid-sandbox']
+                    },
+                    width: 1500,
+                    height: 500
+                });
+
+                interaction.editReply({
+                    files: [outputFilePath],
+                })
+
+                setTimeout(() => {
+                    try {
+                        fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.png');
+                        fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg');
+                        console.log('Files deleted!')
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }, 10000)
+            });
+        }
 }
