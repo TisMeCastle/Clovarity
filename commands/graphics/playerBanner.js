@@ -34,23 +34,7 @@ module.exports = {
                 if (err) return console.log(err);
             });
 
-                const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'
-
-                if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-                    console.log('not lit');
-                    fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg')
-            
-                    setTimeout(() => {
-                        if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-                            console.log('still there');
-                        } else {
-                            console.log('file disappeared');
-                        }
-                    }, 2000);
-                } else {
-                    console.log('lit');
-                }
-                
+                const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'           
 
                 const outputFilePath = await convertFile(inputFilePath, {
                     puppeteer: {
