@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { convertFile } = require('convert-svg-to-png');
-const { MessageAttachment, MessageActionRow, MessageButton } = require("discord.js");
 const { TwitterApi } = require('twitter-api-v2');
 
 const client = new TwitterApi({
@@ -13,11 +12,11 @@ const client = new TwitterApi({
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("playerbanner")
-        .setDescription("Creates a defeat graphic using an SVG")
+        .setDescription("Custom Player Banners")
         .addStringOption((option) =>
             option
                 .setName("their_name")
-                .setDescription("Send their logo so I can add it to the graphic")
+                .setDescription("What's Their Gamer Tag?")
                 .setRequired(true)
         ),
     async execute(interaction) {
@@ -38,24 +37,27 @@ module.exports = {
             const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'
 
             if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-                console.log('not lit')
+                console.log('not lit');
             } else {
                 setTimeout(() => {
-                    fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')
-                    console.log('lit')
-                }, 500)
+                    if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
+                        console.log('not lit');
+                    } else {
+                        console.log('lit');
+                    }
+                }, 2000); // Wait for 2 seconds before re-checking
             }
 
             const outputFilePath = await convertFile(inputFilePath, {
-                width: 1500,
-                height: 500,
                 puppeteer: {
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
-                }
+                },
+                width: 1500,
+                height: 500
             });
 
             interaction.editReply({
-                files: [ outputFilePath ],
+                files: [outputFilePath],
             })
 
             setTimeout(() => {
