@@ -51,22 +51,23 @@ module.exports = {
                     console.log('lit')
                 }, 500)
             }
-
+            try {
             const outputFilePath = await convertFile(inputFilePath, {
                 puppeteer: {
                     headless: 'new',
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 },
             });
-try {
-            interaction.editReply({
-                files: [{
-                    attachment: outputFilePath,
-                }],
-            });
         } catch {
             console.log(error)
         }
+
+                interaction.editReply({
+                    files: [{
+                        attachment: outputFilePath,
+                    }],
+                });
+
 
             setTimeout(() => {
                 try {
