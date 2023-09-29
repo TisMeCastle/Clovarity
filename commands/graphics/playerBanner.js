@@ -1,14 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { convertFile } = require('convert-svg-to-png');
-const { TwitterApi } = require('twitter-api-v2');
 var fs = require('fs')
-
-const client = new TwitterApi({
-    appKey: process.env.TWITTER_CONSUMER_KEY,
-    appSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: process.env.TWITTER_ACCESS_TOKEN,
-    accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-});
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,54 +15,52 @@ module.exports = {
     async execute(interaction) {
         interaction.deferReply()
 
-        if(fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-            fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg')
-        }
-
-		await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
-			if (err) {
-				return console.log(err);
-			}
-			const r = data.replace('theirnamehere', `${interaction.options.getString("playerbanner")}`);
+        await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
+            if (err) {
+                return console.log(err);
+            }
+            var r = data.replace('opplogohere', `${interaction.options.getString("opposition_logo_url")}`)
 
 
-			fs.writeFile('./commands/graphics/PlayerBanner2.0result.svg', r, function (err) {
-				if (err) return console.log(err);
-			});
-
-
-			const inputFilePath = './commands/graphics/PlayerBanner2.0result.svg'
-
-			if (fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')) {
-				console.log('not lit')
-			} else {
-				setTimeout(() => {
-					fs.existsSync('./commands/graphics/PlayerBanner2.0result.svg')
-					console.log('lit')
-				}, 500)
-			}     
-
-                const outputFilePath = await convertFile(inputFilePath, {
-                    puppeteer: {
-                        args: ['--no-sandbox', '--disable-setuid-sandbox']
-                    },
-                    width: 1500,
-                    height: 500
-                });
-
-                interaction.editReply({
-                    files: [outputFilePath],
-                })
-
-                setTimeout(() => {
-                    try {
-                        fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.png');
-                        fs.unlinkSync('./commands/graphics/PlayerBanner2.0result.svg');
-                        console.log('Files deleted!')
-                    } catch (err) {
-                        console.error(err);
-                    }
-                }, 10000)
+            fs.writeFile('./commands/graphics/result.svg', r, function (err) {
+                if (err) return console.log(err);
             });
-        }
-}
+
+
+            const inputFilePath = './commands/graphics/result.svg'
+
+            if (fs.existsSync('./commands/graphics/result.svg')) {
+                console.log('not lit')
+            } else {
+                setTimeout(() => {
+                    fs.existsSync('./commands/graphics/result.svg')
+                    console.log('lit')
+                }, 500)
+            }
+
+            const outputFilePath = await convertFile(inputFilePath, {
+                puppeteer: {
+                    args: ['--no-sandbox', '--disable-setuid-sandbox']
+                }
+            });
+
+            interaction.editReply({
+                components: [buttonData],
+                files: [{
+                    attachment: outputFilePath,
+                }],
+            })
+
+            setTimeout(() => {
+                try {
+                    fs.unlinkSync('./commands/graphics/result.png');
+                    fs.unlinkSync('./commands/graphics/result.svg');
+                    console.log('Victory files deleted!')
+                } catch (err) {
+                    console.error(err);
+                }
+            }, 10000)
+
+        })
+    }
+};
