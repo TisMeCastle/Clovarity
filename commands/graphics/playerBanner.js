@@ -58,6 +58,7 @@ module.exports = {
             });
 
             setTimeout(() => {
+                console.log('sent image')
                 interaction.editReply({
                     files: [{
                         attachment: outputFilePath,
@@ -72,8 +73,8 @@ module.exports = {
                     } catch (err) {
                         console.error(err);
                     }
-                }, 10000)
-            }, 4000)
+                }, 15000)
+            }, 10000)
         })
     }
 };
