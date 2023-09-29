@@ -54,7 +54,8 @@ module.exports = {
 			const outputFilePath = await convertFile(inputFilePath, {
 				puppeteer: {
 				  args: ['--no-sandbox', '--disable-setuid-sandbox']
-				}
+				},
+                headless: "new"
 			  });
 
 			interaction.editReply({
