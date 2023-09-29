@@ -41,13 +41,10 @@ module.exports = {
             const outputFilePath = await convertFile(inputFilePath, {
                 puppeteer: {
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
-                },
-                width: 1500,
-                height: 500
+                }
             });
 
             interaction.editReply({
-                components: [buttonData],
                 files: [{
                     attachment: outputFilePath,
                 }],
@@ -57,7 +54,7 @@ module.exports = {
                 try {
                     fs.unlinkSync('./commands/graphics/result.png');
                     fs.unlinkSync('./commands/graphics/result.svg');
-                    console.log('Victory files deleted!')
+                    console.log('Files deleted!')
                 } catch (err) {
                     console.error(err);
                 }
