@@ -56,6 +56,7 @@ module.exports = {
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 }
             });
+
             setTimeout(() => {
                 interaction.editReply({
                     files: [{
@@ -72,7 +73,7 @@ module.exports = {
                         console.error(err);
                     }
                 }, 10000)
-            }, 2000)
+            }, 4000)
         })
     }
 };
