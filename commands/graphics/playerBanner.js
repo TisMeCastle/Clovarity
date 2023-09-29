@@ -51,18 +51,17 @@ module.exports = {
                 }, 500)
             }
 
-            const outputFilePath = await convertFile(inputFilePath, {
-                puppeteer: {
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
-                }
-            });
+			const outputFilePath = await convertFile(inputFilePath, {
+				puppeteer: {
+				  args: ['--no-sandbox', '--disable-setuid-sandbox']
+				}
+			  });
 
-                console.log('sent image')
-                interaction.editReply({
-                    files: [{
-                        attachment: inputFilePath,
-                    }],
-                })
+			interaction.editReply({
+				files: [{
+					attachment: outputFilePath,
+				}],
+			});
 
                 setTimeout(() => {
                     try {
