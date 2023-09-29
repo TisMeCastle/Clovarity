@@ -66,6 +66,7 @@ module.exports = {
 
 			const outputFilePath = await convertFile(inputFilePath, {
 				puppeteer: {
+					headless: 'new',
 					args: ['--no-sandbox', '--disable-setuid-sandbox']
 				}
 			});

@@ -51,28 +51,28 @@ module.exports = {
                 }, 500)
             }
 
-			const outputFilePath = await convertFile(inputFilePath, {
-				puppeteer: {
+            const outputFilePath = await convertFile(inputFilePath, {
+                puppeteer: {
                     headless: 'new',
-				  args: ['--no-sandbox', '--disable-setuid-sandbox']
-				},
-			  });
+                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+                },
+            });
 
-			interaction.editReply({
-				files: [{
-					attachment: outputFilePath,
-				}],
-			});
+            interaction.editReply({
+                files: [{
+                    attachment: outputFilePath,
+                }],
+            });
 
-                setTimeout(() => {
-                    try {
-                        fs.unlinkSync('./commands/Graphics/result.png');
-                        fs.unlinkSync('./commands/Graphics/result.svg');
-                        console.log('Files deleted!')
-                    } catch (err) {
-                        console.error(err);
-                    }
-                }, 10000)
+            setTimeout(() => {
+                try {
+                    fs.unlinkSync('./commands/Graphics/result.png');
+                    fs.unlinkSync('./commands/Graphics/result.svg');
+                    console.log('Files deleted!')
+                } catch (err) {
+                    console.error(err);
+                }
+            }, 10000)
         })
     }
 };
