@@ -41,7 +41,9 @@ module.exports = {
             const outputFilePath = await convertFile(inputFilePath, {
                 puppeteer: {
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
-                }
+                },
+                width: 1500,
+                height: 500
             });
 
             interaction.editReply({
