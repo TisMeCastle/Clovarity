@@ -60,7 +60,7 @@ module.exports = {
                 console.log('sent image')
                 interaction.editReply({
                     files: [{
-                        attachment: outputFilePath,
+                        attachment: inputFilePath,
                     }],
                 })
 
