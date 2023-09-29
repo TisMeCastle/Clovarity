@@ -21,6 +21,7 @@
     "moment": "^2.29.4",
     "number-to-words": "^1.2.4",
     "oauth": "^0.10.0",
+    "puppeteer": "^21.3.6",
     "sourcebin_js": "^0.0.3-ignore",
     "twitter-api-v2": "^1.15.1"
   },
