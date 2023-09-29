@@ -27,7 +27,7 @@ module.exports = {
         }
 
 
-        await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
+        await fs.readFile("./commands/Graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
             if (err) {
                 return console.log(err);
             }
@@ -35,18 +35,18 @@ module.exports = {
             var r1 = r.replace('fontsizehere', `${fontSize}px`)
 
 
-            fs.writeFile('./commands/graphics/result.svg', r1, function (err) {
+            fs.writeFile('./commands/Graphics/result.svg', r1, function (err) {
                 if (err) return console.log(err);
             });
 
 
-            const inputFilePath = './commands/graphics/result.svg'
+            const inputFilePath = './commands/Graphics/result.svg'
 
-            if (fs.existsSync('./commands/graphics/result.svg')) {
+            if (fs.existsSync('./commands/Graphics/result.svg')) {
                 console.log('not lit')
             } else {
                 setTimeout(() => {
-                    fs.existsSync('./commands/graphics/result.svg')
+                    fs.existsSync('./commands/Graphics/result.svg')
                     console.log('lit')
                 }, 500)
             }
@@ -57,7 +57,6 @@ module.exports = {
                 }
             });
 
-            setTimeout(() => {
                 console.log('sent image')
                 interaction.editReply({
                     files: [{
@@ -67,14 +66,13 @@ module.exports = {
 
                 setTimeout(() => {
                     try {
-                        fs.unlinkSync('./commands/graphics/result.png');
-                        fs.unlinkSync('./commands/graphics/result.svg');
+                        fs.unlinkSync('./commands/Graphics/result.png');
+                        fs.unlinkSync('./commands/Graphics/result.svg');
                         console.log('Files deleted!')
                     } catch (err) {
                         console.error(err);
                     }
-                }, 15000)
-            }, 10000)
+                }, 10000)
         })
     }
 };
