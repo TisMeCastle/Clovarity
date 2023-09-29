@@ -22,7 +22,7 @@ module.exports = {
         interaction.deferReply()
 
         let fontSize = "115"
-        if(interaction.options.getString("font_size")) {
+        if (interaction.options.getString("font_size")) {
             fontSize = interaction.options.getString("font_size")
         }
 
@@ -56,23 +56,23 @@ module.exports = {
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 }
             });
-
-            interaction.editReply({
-                files: [{
-                    attachment: outputFilePath,
-                }],
-            })
-
             setTimeout(() => {
-                try {
-                    fs.unlinkSync('./commands/graphics/result.png');
-                    fs.unlinkSync('./commands/graphics/result.svg');
-                    console.log('Files deleted!')
-                } catch (err) {
-                    console.error(err);
-                }
-            }, 10000)
+                interaction.editReply({
+                    files: [{
+                        attachment: outputFilePath,
+                    }],
+                })
 
+                setTimeout(() => {
+                    try {
+                        fs.unlinkSync('./commands/graphics/result.png');
+                        fs.unlinkSync('./commands/graphics/result.svg');
+                        console.log('Files deleted!')
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }, 10000)
+            }, 2000)
         })
     }
 };
