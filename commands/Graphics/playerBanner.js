@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { error } = require("console");
 const { convertFile } = require('convert-svg-to-png');
 var fs = require('fs')
 
@@ -54,15 +55,18 @@ module.exports = {
             const outputFilePath = await convertFile(inputFilePath, {
                 puppeteer: {
                     headless: 'new',
-                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+                    args: ['--no-sandbox', '--disable-setuid-sandbox']
                 },
             });
-
+try {
             interaction.editReply({
                 files: [{
                     attachment: outputFilePath,
                 }],
             });
+        } catch {
+            console.log(error)
+        }
 
             setTimeout(() => {
                 try {
