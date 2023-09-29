@@ -11,18 +11,31 @@ module.exports = {
                 .setName("their_name")
                 .setDescription("What's Their Gamer Tag?")
                 .setRequired(true)
+        )
+        .addStringOption((option) =>
+            option
+                .setName("font_size")
+                .setDescription("Stock is 115px")
+                .setRequired(false)
         ),
     async execute(interaction) {
         interaction.deferReply()
+
+        let fontSize = "115"
+        if(interaction.options.getString("font_size")) {
+            fontSize = interaction.options.getString("font_size")
+        }
+
 
         await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8', async function (err, data) {
             if (err) {
                 return console.log(err);
             }
-            var r = data.replace('opplogohere', `${interaction.options.getString("opposition_logo_url")}`)
+            var r = data.replace('theirnamehere', `${interaction.options.getString("their_name").toUpperCase()}`)
+            var r1 = r.replace('fontsizehere', `${fontSize}px`)
 
 
-            fs.writeFile('./commands/graphics/result.svg', r, function (err) {
+            fs.writeFile('./commands/graphics/result.svg', r1, function (err) {
                 if (err) return console.log(err);
             });
 
