@@ -1,11 +1,12 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { error } = require("console");
 const { convertFile } = require('convert-svg-to-png');
+const sharp = require("sharp")
 var fs = require('fs')
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("playerbanner")
+        .setName("playerbanner2")
         .setDescription("Custom Player Banners")
         .addStringOption((option) =>
             option
@@ -20,7 +21,7 @@ module.exports = {
                 .setRequired(false)
         ),
     async execute(interaction) {
-        interaction.deferReply()
+        await interaction.deferReply()
 
         let fontSize = "115"
         if (interaction.options.getString("font_size")) {
@@ -40,9 +41,6 @@ module.exports = {
                 if (err) return console.log(err);
             });
 
-
-            const inputFilePath = './commands/Graphics/result.svg'
-
             if (fs.existsSync('./commands/Graphics/result.svg')) {
                 console.log('not lit')
             } else {
@@ -51,22 +49,22 @@ module.exports = {
                     console.log('lit')
                 }, 500)
             }
-            try {
-            const outputFilePath = await convertFile(inputFilePath, {
-                puppeteer: {
-                    headless: 'new',
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
-                },
-            });
-        } catch {
-            console.log(error)
-        }
 
-                interaction.editReply({
-                    files: [{
-                        attachment: outputFilePath,
-                    }],
-                });
+
+            const imageData = await sharp("./commands/Graphics/result.svg")
+                .png()
+                .toFile("./commands/Graphics/result.png")
+                .then(function (info) {
+                })
+                .catch(function (err) {
+                    console.log(err)
+                })
+
+            interaction.editReply({
+                files: [{
+                    attachment: `./commands/Graphics/result.png`,
+                }],
+            });
 
 
             setTimeout(() => {
