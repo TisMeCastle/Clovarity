@@ -8,12 +8,12 @@ module.exports = {
         .setDescription("Custom Player Banners")
         .addStringOption(option => option.setName("their_name").setDescription("What's Their Gamer Tag?").setRequired(true))
         .addStringOption(option => option.setName("font_size").setDescription("Font size on the graphic").setRequired(false)),
-    
+
     async execute(interaction) {
         await interaction.deferReply();
 
         const filePath = './commands/graphics/PlayerBanner2.0result.svg';
-        
+
         try {
             await fs.unlink(filePath);
         } catch (err) {
@@ -25,14 +25,16 @@ module.exports = {
             const replacedName = data.replace('theirnamehere', interaction.options.getString("their_name"));
             const replacedFontSize = replacedName.replace('fontsizehere', `${interaction.options.getString("font_size")}px`) || '225';
 
-            
-			await fs.writeFile('./commands/graphics/PlayerBanner2.0result.svg', replacedFontSize, function (err) {
-				if (err) return console.log(err);
-			});
+
+            await fs.writeFile('./commands/graphics/PlayerBanner2.0result.svg', replacedFontSize, function (err) {
+                if (err) return console.log(err);
+            });
 
             const outputFilePath = await convertFile(filePath, {
                 puppeteer: {
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
+                    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                    headless: false,
+                    slowMo: 1000,
                 },
                 width: 1500,
                 height: 500
