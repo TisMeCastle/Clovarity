@@ -12,7 +12,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
 
-        const filePath = './commands/graphics/PlayerBanner2.0result.svg';
+        const filePath = './commands/Graphics/PlayerBanner2.0result.svg';
 
         try {
             await fs.unlink(filePath);
@@ -21,12 +21,12 @@ module.exports = {
         }
 
         try {
-            let data = await fs.readFile("./commands/graphics/PlayerBanner2.0.svg", 'utf8');
+            let data = await fs.readFile("./commands/Graphics/PlayerBanner2.0.svg", 'utf8');
             const replacedName = data.replace('theirnamehere', interaction.options.getString("their_name"));
             const replacedFontSize = replacedName.replace('fontsizehere', `${interaction.options.getString("font_size")}px`) || '225';
 
 
-            await fs.writeFile('./commands/graphics/PlayerBanner2.0result.svg', replacedFontSize, function (err) {
+            await fs.writeFile('./commands/Graphics/PlayerBanner2.0result.svg', replacedFontSize, function (err) {
                 if (err) return console.log(err);
             });
 
@@ -46,7 +46,7 @@ module.exports = {
 
             setTimeout(async () => {
                 try {
-                    await fs.unlink(`./commands/graphics/PlayerBanner2.0result.png`);
+                    await fs.unlink(`./commands/Graphics/PlayerBanner2.0result.png`);
                     await fs.unlink(filePath);
                     console.log('Files deleted!');
                 } catch (err) {
