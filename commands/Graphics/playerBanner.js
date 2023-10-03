@@ -31,14 +31,16 @@ module.exports = {
             });
 
             const outputFilePath = await convertFile(filePath, {
+                headless: "new",
                 puppeteer: {
+                    headless: "new",
                     args: ['--no-sandbox', '--disable-setuid-sandbox'],
                     ignoreDefaultArgs: ['--disable-extensions'],
-                    headless: true,
                     slowMo: 1000,
                 },
                 width: 1500,
-                height: 500
+                height: 500,
+                headless: "new"
             });
 
 			await interaction.editReply({
