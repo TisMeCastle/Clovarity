@@ -17,12 +17,12 @@ module.exports = {
         try {
             await fs.unlink(filePath);
         } catch (err) {
-            console.error(`Proper Launch!`);
+            console.log(`Proper Launch!`);
         }
 
         try {
             let data = await fs.readFile("./commands/Graphics/PlayerBanner2.0.svg", 'utf8');
-            const replacedName = data.replace('theirnamehere', interaction.options.getString("their_name"));
+            const replacedName = data.replace('theirnamehere', interaction.options.getString("their_name").toUpperCase());
             const replacedFontSize = replacedName.replace('fontsizehere', `${interaction.options.getString("font_size")}px`) || '225';
 
 
@@ -40,9 +40,11 @@ module.exports = {
                 height: 500
             });
 
-            await interaction.editReply({
-                files: [outputFilePath],
-            });
+			await interaction.editReply({
+				files: [{
+					attachment: outputFilePath,
+				}],
+			});
 
             setTimeout(async () => {
                 try {
