@@ -33,7 +33,8 @@ module.exports = {
             const outputFilePath = await convertFile(filePath, {
                 puppeteer: {
                     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-                    headless: false,
+                    ignoreDefaultArgs: ['--disable-extensions'],
+                    headless: true,
                     slowMo: 1000,
                 },
                 width: 1500,
