@@ -36,7 +36,6 @@ module.exports = {
                     headless: "new",
                     args: ['--no-sandbox', '--disable-setuid-sandbox'],
                     ignoreDefaultArgs: ['--disable-extensions'],
-                    slowMo: 1000,
                 },
                 width: 1500,
                 height: 500,
