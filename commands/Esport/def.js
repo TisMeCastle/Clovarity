@@ -70,8 +70,6 @@ module.exports = {
                     args: ['--no-sandbox', '--disable-setuid-sandbox'],
                     ignoreDefaultArgs: ['--disable-extensions'],
                 },
-                width: 1500,
-                height: 500,
                 headless: "new"
             });
 
