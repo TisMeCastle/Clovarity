@@ -5,7 +5,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports = {
 	name: "guildMemberAdd",
-	async execute(member, guild) {
+	async execute(member) {
 		try {
 			const message = new MessageEmbed()
 				.setTitle('__**Welcome To Clovarity!!!**__')
@@ -15,9 +15,9 @@ module.exports = {
 				.setFooter({ text: `We Hope You Have A Great Time! If You Need Help Use "/ticket" And Staff Will Assist You! Good Luck, Have Fun` })
 				.setColor('#00ff43')
 
-			const channel = member.guild.channels.cache.get(welcome)
+			const channel = await member.guild.channels.cache.get(welcome)
 			try {
-				await channel.send({ content: `\`${member.user.username}\` Welcome To Clovarity!`, embeds: [message] })
+				await channel.send({ content: `<@\`${member.user.id}\`> Welcome To Clovarity!`, embeds: [message] })
 			} catch {
 				member.guild.channels.cache.get('1059563002875084900').send(`<@${member.id}> \`${member.id}\` \`${member.user.tag}\` somehow tried to double send their welcome message!`)
 			}
