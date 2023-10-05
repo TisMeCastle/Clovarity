@@ -21,8 +21,6 @@ function logFilesAndPaths(directoryPath) {
     console.log(`Files in directory: ${directoryPath}`);
     files.forEach(file => {
         const filePath = path.join(directoryPath, file);
-        console.log(`File Name: ${file}`);
-        console.log(`Full Path: ${filePath}`);
     });
 }
 
