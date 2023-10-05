@@ -63,7 +63,7 @@ module.exports = {
 			}
 
 
-            const outputFilePath = await convertFile(filePath, {
+            const outputFilePath = await convertFile(inputFilePath, {
                 headless: "new",
                 puppeteer: {
                     headless: "new",
