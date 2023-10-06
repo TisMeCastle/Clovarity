@@ -51,24 +51,13 @@ for (const file of eventFiles) {
     }
 }
 
-// Log files and their paths for the commands and events directories
-logFilesAndPaths('./commands');
-logFilesAndPaths('./events');
-
 client.login(process.env.TOKEN);
 
-// Your custom console.log and console.error functions
 (function () {
-    var _log = console.log;
     var _error = console.error;
 
     console.error = function (errMessage) {
         _error.apply(console, arguments);
         client.channels.cache.find(channel => channel.id === '1059563002875084900').send("<@821248918214017034> error: " + errMessage);
-    };
-
-    console.log = function (logMessage) {
-        client.channels.cache.find(channel => channel.id === '1059563002875084900').send("log: " + logMessage);
-        _log.apply(console, arguments);
     };
 })();

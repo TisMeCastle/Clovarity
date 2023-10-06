@@ -17,7 +17,7 @@ module.exports = {
 
 			const channel = await member.guild.channels.cache.get(welcome)
 			try {
-				await channel.send({ content: `<@\`${member.user.id}\`> Welcome To Clovarity!`, embeds: [message] })
+				await channel.send({ content: `<@${member.user.id}> Welcome To Clovarity!`, embeds: [message] })
 			} catch {
 				member.guild.channels.cache.get('1059563002875084900').send(`<@${member.id}> \`${member.id}\` \`${member.user.tag}\` somehow tried to double send their welcome message!`)
 			}
