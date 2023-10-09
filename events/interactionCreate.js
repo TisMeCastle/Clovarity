@@ -1,6 +1,7 @@
 const { handler } = require('./handlers/supporthandler.js');
 const { buttonHandler } = require('./handlers/buttonhandler.js');
 const { MessageEmbed } = require('discord.js');
+
 module.exports = {
 	name: "interactionCreate",
 	async execute(interaction) {

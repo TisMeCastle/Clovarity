@@ -15,4 +15,3 @@ I hope this message finds you well. I'm Teagan Felker, founder of Clovarity, and
 			});
     }
 }
-
