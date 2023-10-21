@@ -5,3 +5,5 @@ commands/Uploading
 commands/Server/massemail.js
 commands/Server/sendTweet.js
 commands/Tourney/adsTest.js
+commands/Forms
+commands/Tourney/testads.js

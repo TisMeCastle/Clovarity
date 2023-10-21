@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageActionRow, MessageButton, Modal, TextInputComponent, MessageSelectMenu } = require('discord.js');
 module.exports.handler = async (interaction) => {
     const option = interaction.values[0];
+
     if (option === 'feedbackforms') {
         const modal = new Modal()
             .setCustomId('feedback')

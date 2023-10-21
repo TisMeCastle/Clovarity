@@ -171,14 +171,23 @@ module.exports = {
 
                 interaction.crosspost())
 
-            const tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nhttps://start.gg/${link}${interaction.options.getString("tourney_number")}\nhttps://leaguetrolli.challonge.com/${link}${creator}${interaction.options.getString("tourney_number")}${stream2}\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`
-            var tweetID;
+            let tweetText;
+            let commentTweet;
+            tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nCheck the Comments!\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`;
+            commentTweet = `https://start.gg/${link}${interaction.options.getString("tourney_number")} \n\n https://leaguetrolli.challonge.com/${link}${creator}${interaction.options.getString("tourney_number")}${stream2}`
 
             async function postTweet(tweetText) {
                 try {
                     const tweet = await client.v2.tweet(tweetText);
-                    console.log(`Tweet posted with ID ${tweet.data.id}`);
-                    tweetID = tweet.data.id
+                    const tweetID = tweet.data.id;
+                    console.log(`Tweet posted with ID ${tweetID}`);
+
+                    setTimeout(async () => {
+                        const response = await client.v2.reply(commentTweet, tweetID)
+                        const tweetID2 = response.data.id;
+                        console.log(`Replied to tweet with ID ${tweetID2}`);
+                    }, 500)
+
                 } catch (error) {
                     console.error(`Failed to post tweet: ${error}`);
                 }
@@ -228,7 +237,7 @@ Series Score: 0-0\nThank you to everyone who played in our ${converter.toWordsOr
                 description: ' ',
             });
 
-            await formatchannel.send(`**__Twitter Tournament Ad__**\n> https://twitter.com/Clovarity/status/${tweetID}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
+            await formatchannel.send(`**__Twitter Tournament Ad__**\n> https://twitter.com/Clovarity/status/${tweetID}\n> https://twitter.com/Clovarity/status/${tweetID2}\n**__Twitter Podium Results Post__**\n> ${response1.url}`)
         });
     }
 }
