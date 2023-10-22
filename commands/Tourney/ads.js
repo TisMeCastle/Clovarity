@@ -173,19 +173,19 @@ module.exports = {
 
             let tweetText;
             let commentTweet;
+            let tweetID;
+            let tweetID2;
             tweetText = `🚨${interaction.options.getString("tourney_type")} [#${interaction.options.getString("tourney_number")}]🚨\nCA + US | ${players} ${elim} Elimination\n${date} | 8pm EST\n\nSignup Links:⚽️\nCheck the Comments!\n\nPrize:🍀\nFirst Place = $70\nSecond Place = $30`;
-            commentTweet = `https://start.gg/${link}${interaction.options.getString("tourney_number")} \n\n https://leaguetrolli.challonge.com/${link}${creator}${interaction.options.getString("tourney_number")}${stream2}`
+            commentTweet = `https://start.gg/${link}${interaction.options.getString("tourney_number")}\n\nhttps://leaguetrolli.challonge.com/${link}${creator}${interaction.options.getString("tourney_number")}${stream2}`
 
             async function postTweet(tweetText) {
                 try {
                     const tweet = await client.v2.tweet(tweetText);
-                    const tweetID = tweet.data.id;
-                    console.log(`Tweet posted with ID ${tweetID}`);
+                    tweetID = tweet.data.id;
 
                     setTimeout(async () => {
                         const response = await client.v2.reply(commentTweet, tweetID)
-                        const tweetID2 = response.data.id;
-                        console.log(`Replied to tweet with ID ${tweetID2}`);
+                        tweetID2 = response.data.id;
                     }, 500)
 
                 } catch (error) {
