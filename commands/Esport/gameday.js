@@ -89,7 +89,8 @@ module.exports = {
         },
       });
 
-      const buttonData = new MessageActionRow().addComponents(
+      const buttonData = new MessageActionRow()
+      .addComponents(
         new MessageButton()
           .setCustomId("sendGameTweet")
           .setLabel("Send Tweet")
