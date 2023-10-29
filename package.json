@@ -19,7 +19,6 @@
     "discord-api-types": "^0.24.0",
     "discord.js": "^13.14.0",
     "dotenv": "^10.0.0",
-    "gm": "^1.25.0",
     "moment": "^2.29.4",
     "number-to-words": "^1.2.4",
     "oauth": "^0.10.0",

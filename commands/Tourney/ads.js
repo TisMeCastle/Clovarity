@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 const { TwitterApi } = require('twitter-api-v2');
 const moment = require('moment');
 const fs = require('fs')
-
+const sharp = require("sharp")
 
 const client = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY,
@@ -53,7 +53,7 @@ module.exports = {
                 .setDescription('Example: 1st $70 | 2nd $30')
         ),
     async execute(interaction) {
-        interaction.deferReply()
+        await interaction.deferReply()
 
         const gameChannelId = "1059569184880738334"
         const gameChannel = interaction.guild.channels.cache.find(channel => channel.id === gameChannelId)
@@ -109,9 +109,9 @@ module.exports = {
         }
 
         if (interaction.options.getString("tourney_type") === "Clover Clash") {
-            xaxis = "1300"
+            xaxis = `"2076"`
         } else {
-            xaxis = "1165"
+            xaxis = `"1900"`
         }
 
         const futureDate = interaction.options.getString("date")
@@ -134,13 +134,13 @@ module.exports = {
         try {
             await fs.readFile("./commands/Tourney/ad.svg", 'utf8', async function (err, data) {
 
-                var r = data.replace(/eventname/g, `${interaction.options.getString("tourney_type")}`);
-                var r1 = r.replace(/tourneynumber/g, `#${interaction.options.getString("tourney_number")}`);
-                var r2 = r1.replace(/prizing/g, await prizing);
-                var r3 = r2.replace(/xaxis/g, await xaxis);
-                var r4 = r3.replace(/eventdate/g, await formattedDate);
-                var r5 = r4.replace(/eventtime/g, await graphTime);
-                var r6 = r5.replace(/eventformat/g, await players);
+                var r = data.replace(/eventname1/g, `${interaction.options.getString("tourney_type")}`);
+                var r1 = r.replace(/eventnumber1/g, `#${interaction.options.getString("tourney_number")}`);
+                var r2 = r1.replace(/prizing1/g, await prizing);
+                var r3 = r2.replace(/xaxisrighthere/g, await xaxis);
+                var r4 = r3.replace(/eventdate1/g, await formattedDate);
+                var r5 = r4.replace(/eventtime1/g, await graphTime);
+                var r6 = r5.replace(/eventformat1/g, await players);
 
                 fs.writeFile('./commands/Tourney/adres.svg', r6, function (err) {
                     if (err) return console.log(err);
@@ -156,16 +156,12 @@ module.exports = {
                         console.log('lit')
                     }, 500)
                 }
-
-
+                
+                puppeteer.launch()
                 const outputFilePath = await convertFile(inputFilePath, {
-                    headless: "new",
                     puppeteer: {
                         headless: "new",
-                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-                        ignoreDefaultArgs: ['--disable-extensions'],
                     },
-                    headless: "new"
                 });
 
                 interaction.editReply({
@@ -189,12 +185,11 @@ module.exports = {
                     }],
                 })
 
-
                 buttonData.components[0].setDisabled(false);
-
-                setTimeout(function () {
-                    interaction.editReply({
-                        content: `
+                try {
+                    setTimeout(function () {
+                        interaction.editReply({
+                            content: `
                             > **__Clovarity's ${week}${interaction.options.getString("tourney_type")} | $100 ${players} Tournament [#${interaction.options.getString("tourney_number")}]__**
                             > 
                             > :date: **__Date & Time:__**
@@ -209,11 +204,17 @@ module.exports = {
                             > ${stream}
                             > :money_with_wings: __**Prize:**__
                             > **First Place =** \`$70\`
-                            > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData], files: [{
-                            attachment: outputFilePath,
-                        }],
-                    });
-                }, 7000);
+                            > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true,
+                            components: [buttonData],
+                            files: [{
+                                attachment: outputFilePath,
+                            }],
+                        });
+                    }, 7000);
+                } catch (error) {
+                    console.error('Error occurred while editing the reply:', error);
+                    // Handle the error here or rethrow it if necessary
+                }
 
 
                 let buttonPressed = false;
@@ -247,7 +248,7 @@ module.exports = {
                                     > **Second Place =** \`$30\`\n<@&1059582067597385770>`
                     }).then(interaction =>
 
-                    interaction.crosspost())
+                        interaction.crosspost())
 
                     try {
                         let tweetText;
