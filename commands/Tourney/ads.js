@@ -157,13 +157,15 @@ module.exports = {
                     }, 500)
                 }
 
-                const browser = await puppeteer.launch({
-                    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-                    ignoreDefaultArgs: ['--disable-extensions'],
+                const outputFilePath = await convertFile(inputFilePath, {
                     headless: "new",
-                  });
-
-                const outputFilePath = await convertFile(inputFilePath, browser);
+                    puppeteer: {
+                        headless: "new",
+                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                        ignoreDefaultArgs: ['--disable-extensions'],
+                    },
+                    headless: "new"
+                });
 
                 interaction.editReply({
                     content: `
