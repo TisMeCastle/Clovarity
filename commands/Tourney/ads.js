@@ -156,8 +156,9 @@ module.exports = {
                         console.log('lit')
                     }, 500)
                 }
-
-                const outputFilePath = await convertFile(inputFilePath, {
+let outputFilePath = "";
+                try {
+                outputFilePath = await convertFile(inputFilePath, {
                     headless: "new",
                     puppeteer: {
                         headless: "new",
@@ -166,6 +167,9 @@ module.exports = {
                     },
                     headless: "new"
                 });
+            } catch (err) {
+                console.log(err)
+            }
 
                 interaction.editReply({
                     content: `
