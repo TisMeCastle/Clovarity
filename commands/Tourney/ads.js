@@ -156,8 +156,7 @@ module.exports = {
                         console.log('lit')
                     }, 500)
                 }
-                
-                puppeteer.launch()
+
                 const outputFilePath = await convertFile(inputFilePath, {
                     puppeteer: {
                         headless: "new",
