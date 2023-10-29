@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 const { TwitterApi } = require('twitter-api-v2');
 const moment = require('moment');
 const fs = require('fs')
-const sharp = require("sharp")
+const puppeteer = require("puppeteer")
 
 const client = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY,
@@ -157,13 +157,13 @@ module.exports = {
                     }, 500)
                 }
 
-                const outputFilePath = await convertFile(inputFilePath, {
-                    puppeteer: {
-                        headless: "new",
-                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-                        ignoreDefaultArgs: ['--disable-extensions'],
-                    },
-                });
+                const browser = await puppeteer.launch({
+                    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                    ignoreDefaultArgs: ['--disable-extensions'],
+                    headless: "new",
+                  });
+
+                const outputFilePath = await convertFile(inputFilePath, browser);
 
                 interaction.editReply({
                     content: `
