@@ -3,6 +3,7 @@ const { convertFile } = require('convert-svg-to-png');
 const { MessageActionRow, MessageButton } = require("discord.js");
 const { TwitterApi } = require('twitter-api-v2');
 const converter = require('number-to-words');
+var fs = require('fs')
 
 const client = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY,
@@ -13,7 +14,7 @@ const client = new TwitterApi({
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("postevent1")
+        .setName("postevent")
         .setDescription("Sends the winners of the event")
         .addStringOption(option =>
             option
@@ -100,7 +101,7 @@ module.exports = {
         )
         .addStringOption(option =>
             option
-                .setName("org_name_1")
+                .setName("org_twitter_handle")
                 .setDescription('Org Twitter handle of Winners')
                 .setRequired(false)
         ),
@@ -111,7 +112,7 @@ module.exports = {
         let xaxis = "";
         let font1 = interaction.options.getString("font1") || "100px";
         let font2 = interaction.options.getString("font2") || "100px";
-        let org1 = interaction.options.getString("org_name_1") || interaction.options.getString("winner_team_name");
+        let org1 = interaction.options.getString("org_twitter_handle") || interaction.options.getString("winner_team_name");
 
         if (!interaction.options.getString("finals_score").includes("-")) {
             interaction.reply({
@@ -120,15 +121,11 @@ module.exports = {
             });
         }
 
-
         if (interaction.options.getString("tourney_type") === "Clover Clash") {
             xaxis = "1300"
         } else {
             xaxis = "1165"
         }
-
-
-
 
         if (interaction.options.getString("font1")) {
             font1 = interaction.options.getString("font1") + "px"
@@ -138,7 +135,6 @@ module.exports = {
             font2 = interaction.options.getString("font2") + "px"
         }
 
-        var fs = require('fs')
         try {
             await fs.readFile("./commands/Tourney/winner.svg", 'utf8', async function (err, data) {
 
