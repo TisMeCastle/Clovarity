@@ -166,7 +166,6 @@ module.exports = {
 
                 const inputFilePath = './commands/Tourney/winnerres.svg'
 
-
                 if (fs.existsSync('./commands/Tourney/winnerres.svg')) {
                     console.log('not lit')
                 } else {

@@ -148,18 +148,24 @@ module.exports = {
                     }, 500)
                 }
 
-const broswer = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreDefaultArgs: ['--disable-extensions'] })
 
-            const outputFilePath = await convertFile(inputFilePath, broswer);
+                const outputFilePath = await convertFile(inputFilePath, {
+                    headless: "new",
+                    puppeteer: {
+                        headless: "new",
+                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                        ignoreDefaultArgs: ['--disable-extensions'],
+                    },
+                    headless: "new"
+                });
 
-            const buttonData = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setCustomId('sendRLAd')
-                    .setLabel('Send Ad')
-                    .setStyle(3)
-                    .setDisabled(true)
-            );
+                const buttonData = new MessageActionRow()
+                    .addComponents(
+                        new MessageButton()
+                            .setCustomId('adimage')
+                            .setLabel('Send Tweet')
+                            .setStyle(3)
+                    );
 
                 interaction.editReply({
                     content: `
@@ -181,6 +187,7 @@ const broswer = await puppeteer.launch({ headless: true, args: ['--no-sandbox', 
                         attachment: outputFilePath,
                     }],
                 })
+
 
                 buttonData.components[0].setDisabled(false);
                 try {
