@@ -122,15 +122,6 @@ module.exports = {
         let date = Math.floor(moment(`${interaction.options.getString("date")} ${time}`, 'YYYY-MM-DD HH:mm:ss'))
         date = moment(date).format('LL')
 
-        const buttonData = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setCustomId('sendRLAd')
-                    .setLabel('Send Ad')
-                    .setStyle(3)
-                    .setDisabled(true)
-            );
-
         try {
             await fs.readFile("./commands/Tourney/ad.svg", 'utf8', async function (err, data) {
 
@@ -156,20 +147,19 @@ module.exports = {
                         console.log('lit')
                     }, 500)
                 }
-let outputFilePath = "";
-                try {
-                outputFilePath = await convertFile(inputFilePath, {
-                    headless: "new",
-                    puppeteer: {
-                        headless: "new",
-                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-                        ignoreDefaultArgs: ['--disable-extensions'],
-                    },
-                    headless: "new"
-                });
-            } catch (err) {
-                console.log(err)
-            }
+
+const broswer = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'], ignoreDefaultArgs: ['--disable-extensions'] })
+
+            const outputFilePath = await convertFile(inputFilePath, broswer);
+
+            const buttonData = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId('sendRLAd')
+                    .setLabel('Send Ad')
+                    .setStyle(3)
+                    .setDisabled(true)
+            );
 
                 interaction.editReply({
                     content: `
