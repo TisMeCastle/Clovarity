@@ -112,7 +112,7 @@ module.exports = {
         let xaxis = "";
         let font1 = interaction.options.getString("font1") || "100px";
         let font2 = interaction.options.getString("font2") || "100px";
-        let org1 = interaction.options.getString("org_twitter_handle") || interaction.options.getString("winner_team_name");
+        let org1 = `@${interaction.options.getString("org_twitter_handle")}` || interaction.options.getString("winner_team_name");
 
         if (!interaction.options.getString("finals_score").includes("-")) {
             interaction.reply({
@@ -205,7 +205,7 @@ module.exports = {
                 if (interaction.options.getString("tourney_type") === "Clover Clash") {
                     tweetmessageinfo = `🎉${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")} Winners🎉
 
-🥇1st Place: @${org1}
+🥇1st Place: ${org1}
 - @${interaction.options.getString("first_player_1")}
 - @${interaction.options.getString("first_player_2")}
 - @${interaction.options.getString("first_player_3")}
@@ -214,7 +214,7 @@ Thank you to everyone who played in our ${converter.toWordsOrdinal(interaction.o
                 } else {
                     tweetmessageinfo = `🎉${interaction.options.getString("tourney_type")} #${interaction.options.getString("tourney_number")} Winners🎉
         
-🥇1st Place: @${org1}
+🥇1st Place: ${org1}
 - @${interaction.options.getString("first_player_1")}
 - @${interaction.options.getString("first_player_2")}
 
