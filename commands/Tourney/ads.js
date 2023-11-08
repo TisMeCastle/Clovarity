@@ -66,13 +66,13 @@ module.exports = {
         let creator = "";
         let week = "Weekly ";
         let elim = "Single";
-        let time = "17:00:00";
+        let time = "18:00:00";
         let graphTime = ""
         let streamLink = "https://twitch.tv/clovarity";
         let xaxis = "";
         let prizing = interaction.options.getString("prizepool") || "1st: $70 | 2nd: $30";
 
-        if (time === "17:00:00") {
+        if (time === "18:00:00") {
             graphTime = "8pm EST"
         }
 
