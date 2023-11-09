@@ -4,7 +4,6 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 const { TwitterApi } = require('twitter-api-v2');
 const moment = require('moment');
 const fs = require('fs')
-const puppeteer = require("puppeteer")
 
 const client = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY,
@@ -15,7 +14,7 @@ const client = new TwitterApi({
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ads")
+        .setName("ads1")
         .setDescription("Posts Custom Ads")
         .addStringOption(option =>
             option
@@ -25,8 +24,7 @@ module.exports = {
                 .addChoices(
                     { name: 'Clover Clash 3v3', value: 'Clover Clash' },
                     { name: 'Luck Fest 2v2', value: 'Luck Fest' },
-                    { name: 'Heatseeker 2v2', value: 'Heatseeker' },
-                    { name: 'Heatseeker 3v3', value: 'Heatseeker Trios' },
+                    { name: 'Luck Fest 1v1', value: 'Luck‎ Fest' }
                 )
         )
         .addStringOption(option =>
@@ -78,19 +76,15 @@ module.exports = {
 
         if (interaction.options.getString("tourney_type") === "Clover Clash") {
             players = "3v3"
-            link = "CloverClash"
+            link = "cloverclash"
         }
         else if (interaction.options.getString("tourney_type") === "Luck Fest") {
             players = "2v2"
-            link = "LuckFest"
-        }
-        else if (interaction.options.getString("tourney_type") === "Heatseeker") {
-            players = "2v2"
-            link = "LuckFest"
-        }
-        else if (interaction.options.getString("tourney_type") === "Heatseeker Trios") {
-            players = "3v3"
-            link = "LuckFest"
+            link = "luckfest"
+        }        
+        else if (interaction.options.getString("tourney_type") === "Luck‎ Fest") {
+            players = "1v1"
+            link = "luckfest"
         }
 
         if (interaction.options.getBoolean("streamed") === true) {
