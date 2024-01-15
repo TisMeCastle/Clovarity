@@ -14,7 +14,7 @@ const client = new TwitterApi({
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("ads1")
+        .setName("ads")
         .setDescription("Posts Custom Ads")
         .addStringOption(option =>
             option
@@ -178,7 +178,7 @@ module.exports = {
             > :money_with_wings: __**Prize:**__
             > **First Place =** \`$70\`
             > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true, components: [buttonData], files: [{
-                        attachment: outputFilePath,
+                        //attachment: outputFilePath,
                     }],
                 })
 
@@ -204,9 +204,9 @@ module.exports = {
                             > **First Place =** \`$70\`
                             > **Second Place =** \`$30\`\n<@&1059582067597385770>`, ephemeral: true,
                             components: [buttonData],
-                            files: [{
+                            /*files: [{
                                 attachment: outputFilePath,
-                            }],
+                            }],*/
                         });
                     }, 7000);
                 } catch (error) {
@@ -322,7 +322,7 @@ module.exports = {
                 });
                 if (buttonPressed === false) {
                     collector.on('end', async collected => {
-                        await interaction.editReply({ content: "Timed Out!", components: [], files: [{ attachment: outputFilePath }] });
+                        await interaction.editReply({ content: "Timed Out!", components: []/*, files: [{ attachment: outputFilePath }] */});
                         try {
                             fs.unlinkSync("./commands/Tourney/adres.png");
                             fs.unlinkSync("./commands/Tourney/adres.svg");
