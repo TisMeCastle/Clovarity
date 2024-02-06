@@ -1,6 +1,7 @@
 const welcome = '1059568891619201044'
 const rules = '1059569160675393658'
 const MCount = "1016393060512448512"
+const processedMembers = new Set();
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports = {
@@ -8,16 +9,22 @@ module.exports = {
 	async execute(member) {
 
 		try {
+
+			if (processedMembers.has(member.id)) {
+				client.channels.cache.find(channel => channel.id === '1059563002875084900').send(`Member ${member.id} already processed. Skipping...`);
+				return;
+			  }
+
 			const message = new MessageEmbed()
 				.setTitle('__**Welcome To Clovarity!!!**__')
 				.setURL('https://solo.to/Clovarity')
 				.setDescription(`Welcome <@${member.user.id}> to Clovarity! Please take your time to visit <#${rules}>, grab the roles and follow our rules! Enjoy your stay!`)
-				.setImage(`https://media.discordapp.net/attachments/936495048223244390/1067945439707541574/Logo_With_Full_Name.png?width=1440&height=413`)
+				.setImage(`https://media.discordapp.net/attachments/993364285558366218/1202781831460818994/Discord_Welcome.png?ex=65ceb4df&is=65bc3fdf&hm=ec20406131195f7d4603ee1b2ec6ebd7778de3872c9b54e304801c93c2f45fb9&=&format=webp&quality=lossless&width=400&height=85`)
 				.setFooter({ text: `We Hope You Have A Great Time! If You Need Help Use "/ticket" And Staff Will Assist You! Good Luck, Have Fun` })
 				.setColor('#00ff43')
 
 			const channel = await member.guild.channels.cache.get(welcome)
-			await channel.send({ content: `<@${member.user.id}> Welcome To Clovarity!`, embeds: [message] })
+			await channel.send({ content: `\`${member.user}\` Welcome To Clovarity!`, embeds: [message] })
 
 		} catch (error) {
 			client.channels.cache.find(channel => channel.id === '1059563002875084900').send("<@821248918214017034> error: " + error)
