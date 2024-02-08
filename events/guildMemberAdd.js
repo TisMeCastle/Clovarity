@@ -24,7 +24,7 @@ module.exports = {
 				.setColor('#00ff43')
 
 			const channel = await member.guild.channels.cache.get(welcome)
-			await channel.send({ content: `\`${member.user}\` Welcome To Clovarity!`, embeds: [message] })
+			await channel.send({ content: `\`${member.user.username}\` Welcome To Clovarity!`, embeds: [message] })
 
 		} catch (error) {
 			client.channels.cache.find(channel => channel.id === '1059563002875084900').send("<@821248918214017034> error: " + error)
